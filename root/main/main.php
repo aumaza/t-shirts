@@ -141,6 +141,18 @@
     </div>
   </div>
 </nav>
+	      <div class="container">
+	      <div class="row">
+	      <div class="col-sm-12">
+	       <div class="alert alert-success" role="alert">
+	       <h2 align="center">Bienvenido!!</h2>
+	       <h3 align="center">Seleccione desde los botones en el Panel la acción que desee realizar.</h3>
+	       </div><hr>      
+	      
+	      </div>
+	      </div>
+	      </div>
+
 
 <?php
 
