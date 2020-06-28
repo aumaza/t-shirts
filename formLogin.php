@@ -10,10 +10,10 @@
 	        
 	mysqli_select_db('t_shirts');
 	
-	$sql = "SELECT * FROM usuarios where user='$user' and password='$pass1' and permisos = 1";
+	$sql = "SELECT * FROM usuarios where user='$user' and password='$pass1' and role = 1";
 	$q = mysqli_query($conn,$sql);
 	
-	$query = "SELECT * FROM usuarios where user='$user' and password='$pass1' and permisos = 0";
+	$query = "SELECT * FROM usuarios where user='$user' and password='$pass1' and role = 0";
 	$retval = mysqli_query($conn,$query);
 	
 	}
@@ -46,7 +46,7 @@
 	
     		if(!$q && !$retval){	
 			echo '<div class="alert alert-danger" role="alert">';
-			echo "Error de Conexion..." .mysqli_error();
+			echo "Error de Conexion..." .mysqli_error($conn);
 			echo "</div>";
 			echo '<a href="index.html"><br><br><button type="submit" class="btn btn-primary">Aceptar</button></a>';	
 			exit;			
@@ -76,7 +76,7 @@
 				echo "<strong> Aguarde un Instante...</strong>";
 				echo "<br>";
 				echo "</div>";
-  				echo '<meta http-equiv="refresh" content="10;URL=http:root/main.php "/>';
+  				echo '<meta http-equiv="refresh" content="5;URL=http:root/main/main.php "/>';
 				//echo '<a href="root/main.php"><br><br><button type="submit" class="btn btn-primary">Aceptar</button></a><br>';		
 			}else{
 				echo '<div class="alert alert-success" role="alert">';
@@ -85,7 +85,7 @@
 				echo "<strong> Aguarde un Instante...</strong>";
 				echo "<br>";
 				echo "</div>";
-  				echo '<meta http-equiv="refresh" content="3;URL=http:1/main.php "/>';
+  				echo '<meta http-equiv="refresh" content="5;URL=http:1/main/main.php "/>';
 				//echo '<a href="1/main.php"><br><br><button type="submit" class="btn btn-primary">Aceptar</button></a><br>';
 			}
 			}else{
