@@ -5,7 +5,7 @@
 
 function agregarUser($nombre,$user,$pass1,$pass2,$role,$conn){
 
-	mysqli_select_db('mis_pastas');	
+	mysqli_select_db('t_shirts');	
 
 	$sqlInsert = "INSERT INTO usuarios ".
 		"(nombre,user,password,role)".
@@ -41,7 +41,7 @@ function updatePass($user,$pass1,$pass2,$conn){
 	
 
     	$sql = "UPDATE usuarios set password = '$pass1' WHERE user = '$user'";
-    	mysqli_select_db('mis_pastas');
+    	mysqli_select_db('t_shirts');
     	
     	
     	if(strcmp($pass2, $pass1) == 0){
@@ -88,7 +88,7 @@ function updatePass($user,$pass1,$pass2,$conn){
 function cambiarPermisos($user,$role,$conn){
 
   $sql = "UPDATE usuarios set role = '$role' where user = '$user'";
-  mysqli_select_db('mis_pastas');
+  mysqli_select_db('t_shirts');
   
   if($user){
     mysqli_query($conn,$sql);
@@ -132,7 +132,7 @@ function loadUser($nombre,$conn){
 if($conn)
 {
 	$sql = "SELECT * FROM clientes where nombre = '$nombre'";
-    	mysqli_select_db('mis_pastas');
+    	mysqli_select_db('t_shirts');
     	$resultado = mysqli_query($conn,$sql);
 	//mostramos fila x fila
 
@@ -191,7 +191,7 @@ function loadUsers($conn){
 if($conn)
 {
 	$sql = "SELECT * FROM clientes";
-    	mysqli_select_db('mis_pastas');
+    	mysqli_select_db('t_shirts');
     	$resultado = mysqli_query($conn,$sql);
 	//mostramos fila x fila
 	$count = 0;
@@ -250,7 +250,7 @@ function loadUserAsk($nombre,$conn){
 if($conn)
 {
 	$sql = "SELECT * FROM pedidos where nombre = '$nombre'";
-    	mysqli_select_db('mis_pastas');
+    	mysqli_select_db('t_shirts');
     	$resultado = mysqli_query($conn,$sql);
 	//mostramos fila x fila
 	$count = 0;
@@ -313,7 +313,7 @@ function loadAsk($conn){
 if($conn)
 {
 	$sql = "SELECT * FROM pedidos";
-    	mysqli_select_db('mis_pastas');
+    	mysqli_select_db('t_shirts');
     	$resultado = mysqli_query($conn,$sql);
 	//mostramos fila x fila
 	$count = 0;
@@ -432,7 +432,7 @@ function addProductos($conn){
 if($conn)
 {
 	$sql = "SELECT * FROM productos";
-    	mysqli_select_db('mis_pastas');
+    	mysqli_select_db('t_shirts');
     	$resultado = mysqli_query($conn,$sql);
 	//mostramos fila x fila
 	$count = 0;
