@@ -195,7 +195,11 @@ if($conn)
     	$resultado = mysqli_query($conn,$sql);
 	//mostramos fila x fila
 	$count = 0;
-	echo '<div class="panel panel-warning" >
+	
+	echo '<div class="container-fluid">
+	      <div class="row">
+	      <div class="col-sm-12">';
+	echo '<div class="panel panel-success" >
 	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/actions/meeting-attending.png"  class="img-reponsive img-rounded"> Clientes</div><br>';
 
             echo "<table class='display compact' id='myTable'>";
@@ -203,10 +207,9 @@ if($conn)
 		    <th class='text-nowrap text-center'>ID</th>
                     <th class='text-nowrap text-center'>Nombre y Apellido</th>
                     <th class='text-nowrap text-center'>E-mail</th>
+                    <th class='text-nowrap text-center'>Celular</th>
                     <th class='text-nowrap text-center'>Dirección</th>
                     <th class='text-nowrap text-center'>Localidad</th>
-                    <th class='text-nowrap text-center'>Teléfono</th>
-                    <th class='text-nowrap text-center'>Celular</th>
                     <th>&nbsp;</th>
                     </thead>";
 
@@ -217,10 +220,9 @@ if($conn)
 			 echo "<td align=center>".$fila['id']."</td>";
 			 echo "<td align=center>".$fila['nombre']."</td>";
 			 echo "<td align=center>".$fila['email']."</td>";
+			 echo "<td align=center>".$fila['celular']."</td>";
 			 echo "<td align=center>".$fila['direccion']."</td>";
 			 echo "<td align=center>".$fila['localidad']."</td>";
-			 echo "<td align=center>".$fila['telefono']."</td>";
-			 echo "<td align=center>".$fila['celular']."</td>";
 			 echo "<td class='text-nowrap'>";
 			 echo "</td>";
 			 $count++;
@@ -230,6 +232,10 @@ if($conn)
 		echo "<br><br><hr>";
 		echo '<button type="button" class="btn btn-primary">Cantidad de Clientes:  ' .$count; echo '</button>';
 		echo '</div>';
+		echo '</div>
+		      </div>
+		      </div>
+		      </div>';
 		}else{
 		  echo 'Connection Failure...';
 		}

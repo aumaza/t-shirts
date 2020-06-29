@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <title>Registro de Usuario</title>
+  <title>Creación de Usuario</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="../../icons/categories/preferences-desktop.png" />
@@ -56,7 +56,7 @@
   </script>
   <!-- END Data Table Script -->
   
-    <script >
+  <script >
 	function limitText(limitField, limitNum) {
        if (limitField.value.length > limitNum) {
           
@@ -150,7 +150,7 @@ function Text(string){//validacion solo letras
 <div class="jumbotron">
   <div class="container text-center">
     <h1>T-SHIRTS</h1>      
-    <h2>Online Store - Registro de Usuarios</h2>
+    <h2>Online Store - Creación de Usuarios</h2>
     <a href="../logout.php"><button class="btn btn-default"><img src="../icons/actions/arrow-left.png" /><strong> Volver</strong></button></a>
   </div>
 </div><br>
@@ -159,51 +159,51 @@ function Text(string){//validacion solo letras
 	      <div class="row">
 	      <div class="col-sm-12">
 	 
-	 <?php 
-	 
-	 if($conn){
-	 
-		$nombre = mysqli_real_escape_string($conn,$_POST["nombre"]);
-		$email = mysqli_real_escape_string($conn,$_POST["email"]);
-		$direccion = mysqli_real_escape_string($conn,$_POST["direccion"]);
-		$celular = mysqli_real_escape_string($conn,$_POST["celular"]);
-		$localidad = mysqli_real_escape_string($conn,$_POST["localidad"]);
-		$provincia = mysqli_real_escape_string($conn,$_POST["provincia"]);
-		
-		$sql = "insert into clientes ".
-		       "(nombre,email,direccion,celular,localidad,provincia)".
-		       "VALUES ".
-		       "('$nombre','$email','$direccion','$celular','$localidad','$provincia')";
-		
-		mysqli_select_db('t_shirts');
-		$retval = mysqli_query($conn,$sql);
-		
-		if(!$retval){
-			echo '<div class="alert alert-danger" role="alert">';
-			echo 'Could not enter data: ' . mysqli_error($conn);
-			echo "</div>";
-			echo '<meta http-equiv="refresh" content="4;URL=http:../index.html "/>';
-			}else{
-			      echo '<div class="alert alert-success" role="alert">';
-			      echo "Registro Guardado Exitosamente!!";
-			      echo '<hr> <a href="crearUsuario.php?nombre='.$nombre.'"><input type="button" value="Crear Usuario" class="btn btn-primary"></a>';
-			      echo "</div>";
-			      } 
-		    
-		
-		    }else{
-			  echo '<div class="alert alert-danger" role="alert">';
-			  echo 'Could not Connect to Database: ' . mysqli_error($conn);
-			  echo '<meta http-equiv="refresh" content="4;URL=http:../index.html "/>';
-			  echo "</div>";
-			 }
-
-	//cerramos la conexion
 	
-	mysqli_close($conn);
- 
-	 ?>
+	 <div class="alert alert-success" role="alert">
+	 <h1>Ahora Continuaremos con la creación de un usuario</h1>
+	  <h3>Preste atención al crear el usuario ya que será este el que utilizará para ingresar a la aplicación</h3>
+	  </div>
 	
+	   <form action="formRegistroFinal.php" method="POST">
+	   
+	   <div class="container">
+	   <div class="row">
+	   <div class="col-sm-5">
+	    <div class="input-group">
+	     <span class="input-group-addon">Nombre</span>
+	      <input id="text" type="text" class="form-control" name="nombre" value="<?php echo $_GET['nombre']; ?>" readonly required>
+	    </div></div>
+	   
+	   <div class="col-sm-5">
+	   <div class="input-group">
+	      <span class="input-group-addon">Usuario</span>
+	      <input id="text" type="text" class="form-control" name="user" onkeyup="this.value=Text(this.value);" onKeyDown="limitText(this,15);" onKeyUp="limitText(this,15);" required>
+	    </div></div></div></div><br>
+	    
+	    <div class="container">
+	   <div class="row">
+	   <div class="col-sm-5">
+	    <div class="input-group">
+	     <span class="input-group-addon">Password</span>
+	      <input id="text" type="password" class="form-control" name="pass1" onKeyDown="limitText(this,10);" onKeyUp="limitText(this,10);" required>
+	    </div></div>
+	   
+	   <div class="col-sm-5">
+	    <div class="input-group">
+	     <span class="input-group-addon">Repita Password</span>
+	      <input id="text" type="password" class="form-control" name="pass2" onKeyDown="limitText(this,10);" onKeyUp="limitText(this,10);" required>
+	    </div></div></div></div><hr>
+	  
+	  <div class="container">
+	   <div class="row">
+	   <div class="col-sm-12" align="center">
+	  <div class="form-group">
+	    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>  Finalizar</button>
+	    </div>
+	  </div></div></div>
+	 </form> 
+	  
 	
 	  
 	  </div>

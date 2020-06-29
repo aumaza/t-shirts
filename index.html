@@ -22,6 +22,60 @@
   
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	
+	  <script >
+	function limitText(limitField, limitNum) {
+       if (limitField.value.length > limitNum) {
+          
+           alert("Ha ingresado más caracteres de los requeridos, deben ser: \n" + limitNum);
+            limitField.value = limitField.value.substring(0, limitNum);
+       }
+       
+       if(limitField.value.lenght < limitNum){
+	  alert("Ha ingresado menos caracteres de los requeridos, deben ser:  \n"  + limitNum);
+            limitField.value = limitField.value.substring(0, limitNum);
+       }
+}
+</script>
+
+<script>
+function Numeros(string){
+//Solo numeros
+    var out = '';
+    var filtro = '1234567890';//Caracteres validos
+	
+    //Recorrer el texto y verificar si el caracter se encuentra en la lista de validos 
+    for (var i=0; i<string.length; i++){
+       if (filtro.indexOf(string.charAt(i)) != -1){ 
+             //Se añaden a la salida los caracteres validos
+              out += string.charAt(i);
+	     }else{
+		alert("ATENCION - Sólo se permiten Números");
+	     }
+	     }
+	
+    //Retornar valor filtrado
+    return out;
+} 
+</script>
+
+
+<script> 
+function Text(string){//validacion solo letras
+    var out = '';
+    //Se añaden las letras validas
+    var filtro ="^[abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ ]+$"; // Caracteres Válidos
+	
+    for (var i=0; i<string.length; i++){
+       if (filtro.indexOf(string.charAt(i)) != -1){ 
+	     out += string.charAt(i);
+	     }else{
+		alert("ATENCION - Sólo se permite Texto");
+	     }
+	     }
+    return out;
+}
+</script>
   
   <style>
   body {
@@ -324,10 +378,10 @@
       <div class="row">
       <form action="registro/formRegistro.php" method="POST">
         <div class="col-sm-6 form-group">
-          <input class="form-control" id="name" name="nombre" placeholder="Nombre y Apellido" type="text" required>
+          <input class="form-control" id="name" name="nombre" placeholder="Nombre y Apellido" type="text" onkeyup="this.value=Text(this.value);" onKeyDown="limitText(this,30);" onKeyUp="limitText(this,30);" required>
         </div>
         <div class="col-sm-6 form-group">
-          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+          <input class="form-control" id="email" name="email" placeholder="Email" type="email" onKeyDown="limitText(this,45);" onKeyUp="limitText(this,45);" required>
         </div>
       </div>
       </div>
@@ -335,10 +389,10 @@
       <div class="col-md-8">
       <div class="row">
       <div class="col-sm-6 form-group">
-          <input class="form-control" id="direccion" name="direccion" placeholder="Direccion" type="text" required>
+          <input class="form-control" id="direccion" name="direccion" placeholder="Direccion" type="text" onKeyDown="limitText(this,60);" onKeyUp="limitText(this,60);" required>
         </div>
         <div class="col-sm-6 form-group">
-          <input class="form-control" id="celular" name="celular" placeholder="Celular" type="text" required>
+          <input class="form-control" id="celular" name="celular" placeholder="Celular" type="text" onkeyup="this.value=Numeros(this.value);" onKeyDown="limitText(this,10);" onKeyUp="limitText(this,10);" required>
         </div>
       </div>
       </div>
@@ -346,10 +400,10 @@
       <div class="col-md-8">
       <div class="row">
       <div class="col-sm-6 form-group">
-          <input class="form-control" id="provincia" name="provincia" placeholder="Provincia" type="text" required>
+          <input class="form-control" id="provincia" name="provincia" placeholder="Provincia" type="text" onKeyDown="limitText(this,90);" onKeyUp="limitText(this,90);" required>
         </div>
         <div class="col-sm-6 form-group">
-          <input class="form-control" id="localidad" name="localidad" placeholder="Localidad" type="text" required>
+          <input class="form-control" id="localidad" name="localidad" placeholder="Localidad" type="text" onKeyDown="limitText(this,60);" onKeyUp="limitText(this,60);" required>
         </div>
       </div>
       </div>

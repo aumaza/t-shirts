@@ -162,6 +162,9 @@
 	    
 		  addProductos($conn);
 	    }
+	    if(isset($_POST['B'])){
+		  loadUsers($conn);
+	    }
   
   
   }else{
