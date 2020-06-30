@@ -411,20 +411,28 @@ if($conn)
     	$resultado = mysqli_query($conn,$sql);
 	//mostramos fila x fila
 	$count = 0;
-	echo '<div class="panel panel-warning" >
-	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/apps/knotes.png"  class="img-reponsive img-rounded"> Pedidos</div><br>';
+	echo '<div class="container-fluid">
+	      <div class="row">
+	      <div class="col-sm-12">';
+	echo '<div class="panel panel-success" >
+	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/status/wallet-open.png"  class="img-reponsive img-rounded"> Pedidos</div><br>';
 
             echo "<table class='display compact' id='myTable'>";
               echo "<thead>
 		    <th class='text-nowrap text-center'>ID</th>
-		    <th class='text-nowrap text-center'>Fecha Pedido</th>
-                    <th class='text-nowrap text-center'>Producto</th>
-                    <th class='text-nowrap text-center'>Cantidad</th>
+		    <th class='text-nowrap text-center'>Fecha Compra</th>
+		    <th class='text-nowrap text-center'>Cod. Producto</th>
+		    <th class='text-nowrap text-center'>Talle</th>
+                    <th class='text-nowrap text-center'>Descipción</th>
                     <th class='text-nowrap text-center'>Importe</th>
+                    <th class='text-nowrap text-center'>Cantidad</th>
                     <th class='text-nowrap text-center'>Cliente</th>
-                    <th class='text-nowrap text-center'>Dirección</th>
+                    <th class='text-nowrap text-center'>Email</th>
                     <th class='text-nowrap text-center'>Celular</th>
-		    <th class='text-nowrap text-center'>A Entregar</th>
+                    <th class='text-nowrap text-center'>Direccion</th>
+                    <th class='text-nowrap text-center'>Localidad</th>
+		    <th class='text-nowrap text-center'>Provincia</th>
+                    <th class='text-nowrap text-center'>Estado</th>
                     <th>&nbsp;</th>
                     </thead>";
 
@@ -433,17 +441,21 @@ if($conn)
 			  // Listado normal
 			 echo "<tr>";
 			 echo "<td align=center>".$fila['id']."</td>";
-			 echo "<td align=center>".$fila['fecha Pedido']."</td>";
-			 echo "<td align=center>".$fila['producto']."</td>";
+			 echo "<td align=center>".$fila['f_pedido']."</td>";
+			 echo "<td align=center>".$fila['cod_prod']."</td>";
+			 echo "<td align=center>".$fila['talle']."</td>";
+			 echo "<td align=center>".$fila['descripcion']."</td>";
+			 echo "<td align=center>".$fila['importe']."</td>";
 			 echo "<td align=center>".$fila['cantidad']."</td>";
-			 echo "<td align=center>".$fila['precio']."</td>";
 			 echo "<td align=center>".$fila['cliente']."</td>";
-			 echo "<td align=center>".$fila['direccion']."</td>";
+			 echo "<td align=center>".$fila['email']."</td>";
 			 echo "<td align=center>".$fila['celular']."</td>";
-			 echo "<td align=center>".$fila['f_entrega']."</td>";
+			 echo "<td align=center>".$fila['direccion']."</td>";
+			 echo "<td align=center>".$fila['localidad']."</td>";
+			 echo "<td align=center>".$fila['provincia']."</td>";
+			 echo "<td align=center>".$fila['estado']."</td>";
 			 echo "<td class='text-nowrap'>";
-			 echo '<a href="editar.php?id='.$fila['id'].'" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Editar</a>';
-			 echo '<a href="editPassword.php?id='.$fila['id'].'" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-refresh"></span> Cambiar Password</a>';
+			 echo '<a href="../pedidos/cambiarEstado.php?id='.$fila['id'].'" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Cambiar Estado</a>';
 			 echo "</td>";
 		}
 
@@ -451,6 +463,10 @@ if($conn)
 		echo "<br><br><hr>";
 		echo '<button type="button" class="btn btn-primary">Cantidad de Pedidos:  ' .$count; echo '</button>';
 		echo '</div>';
+		echo '</div>
+		      </div>
+		      </div>
+		      </div>';
 		}else{
 		  echo 'Connection Failure...';
 		}

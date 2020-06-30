@@ -191,6 +191,9 @@
 	    if(isset($_POST['D'])){
 		  loadRoot($nombre,$conn);
 	    }
+	    if(isset($_POST['E'])){
+		  loadAsk($conn);
+	    }
 	  
   
   
