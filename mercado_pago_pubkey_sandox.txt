@@ -1,0 +1,4 @@
+    216891779 - MercadoPago application (mp-app-216891779)
+
+    Public key:TEST-5bb684fa-5792-4407-b3f7-899bf44831ab
+    Access token:TEST-2859750532230724-063000-bd118b89a2a0acc5c2d7f8f107144692-216891779

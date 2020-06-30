@@ -4,6 +4,13 @@
 	session_start();
 	$varsession = $_SESSION['user'];
 	
+	$sql = "select nombre from usuarios where user = '$varsession'";
+	mysqli_select_db('t_shirts');
+	$query = mysqli_query($conn,$sql);
+	while($row = mysqli_fetch_array($query)){
+	      $nombre = $row['nombre'];
+	}
+	
 	if($varsession == null || $varsession = ''){
 	echo '<div class="alert alert-danger" role="alert">';
 	echo "Usuario o Contraseña Incorrecta. Reintente Por Favor...";
@@ -13,7 +20,8 @@
 	echo '<a href="../../logout.php"><br><br><button type="submit" class="btn btn-primary">Aceptar</button></a>';	
 	die();
 	}
-
+	
+	
 
 ?>
 
@@ -67,6 +75,21 @@
 
   </script>
   <!-- END Data Table Script -->
+  
+  <script >
+	function limitText(limitField, limitNum) {
+       if (limitField.value.length > limitNum) {
+          
+           alert("Ha ingresado más caracteres de los requeridos, deben ser: \n" + limitNum);
+            limitField.value = limitField.value.substring(0, limitNum);
+       }
+       
+       if(limitField.value.lenght < limitNum){
+	  alert("Ha ingresado menos caracteres de los requeridos, deben ser:  \n"  + limitNum);
+            limitField.value = limitField.value.substring(0, limitNum);
+       }
+}
+</script>
   
 
   <style>
@@ -145,7 +168,7 @@
 	      <div class="row">
 	      <div class="col-sm-12">
 	       <div class="alert alert-success" role="alert">
-	       <h2 align="center">Bienvenido!!</h2>
+	       <h2 align="center">Bienvenido!! <strong><?php echo $nombre ?></strong></h2>
 	       <h3 align="center">Seleccione desde los botones en el Panel la acción que desee realizar.</h3>
 	       </div><hr>      
 	      
@@ -165,6 +188,10 @@
 	    if(isset($_POST['B'])){
 		  loadUsers($conn);
 	    }
+	    if(isset($_POST['D'])){
+		  loadRoot($nombre,$conn);
+	    }
+	  
   
   
   }else{
@@ -215,6 +242,9 @@
 		</script>
 		
 		<!-- END Modal -->
+		
+		
+	
 
 
 

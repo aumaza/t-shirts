@@ -36,11 +36,11 @@ function agregarUser($nombre,$user,$pass1,$pass2,$role,$conn){
 * Funcion para editar la contraseña de los usuarios al sistema
 */
 
-function updatePass($user,$pass1,$pass2,$conn){
+function updatePass($id,$pass1,$pass2,$conn){
 
 	
 
-    	$sql = "UPDATE usuarios set password = '$pass1' WHERE user = '$user'";
+    	$sql = "UPDATE usuarios set password = '$pass1' WHERE id = '$id'";
     	mysqli_select_db('t_shirts');
     	
     	
@@ -53,12 +53,14 @@ function updatePass($user,$pass1,$pass2,$conn){
 			      <div class="row">
 			      <div class="col-md-12">';
 			echo '<div class="alert alert-success" role="alert">';
-			echo 'Password Actualizado Satisfactoriamente';
+			echo 'Password Actualizado Satisfactoriamente<br>';
+			echo 'Aguarde un Instante que será redirigido';
 			echo "</div>";
 			echo "</div>";
 			echo "</div>";
 			echo "</div>";
 			echo "</div>";
+			echo '<meta http-equiv="refresh" content="4;URL=http:../main/main.php "/>';
 			
 	   	}else{
 			echo "<br>";
@@ -66,13 +68,16 @@ function updatePass($user,$pass1,$pass2,$conn){
 			      <div class="container">
 			      <div class="row">
 			      <div class="col-md-12">';
-			echo '<div class="alert alert-warning" role="alert">';
-			echo "Las Contraseñas no Coinciden. Intente Nuevamente!";
+			echo '<div class="alert alert-danger" role="alert">';
+			echo "Las Contraseñas no Coinciden. Intente Nuevamente!<br>";
+			echo 'Aguarde un instante que será redirigido';
 			echo "</div>";
 			echo "</div>";
 			echo "</div>";
 			echo "</div>";
 			echo "</div>";
+			echo '<meta http-equiv="refresh" content="4;URL=http:../main/main.php "/>';
+			
 			
 			
 
@@ -85,9 +90,9 @@ function updatePass($user,$pass1,$pass2,$conn){
 * Funcion para cambiar los permisos de los usuarios al sistema
 */
 
-function cambiarPermisos($user,$role,$conn){
+function cambiarPermisos($id,$role,$conn){
 
-  $sql = "UPDATE usuarios set role = '$role' where user = '$user'";
+  $sql = "UPDATE usuarios set role = '$role' where id = '$id'";
   mysqli_select_db('t_shirts');
   
   if($user){
@@ -122,6 +127,64 @@ function cambiarPermisos($user,$role,$conn){
  
 }
 
+
+/*
+* Funcion para mostrar los datos del usuario administrador.-
+*/
+
+function loadRoot($nombre,$conn){
+
+
+if($conn)
+{
+	$sql = "SELECT * FROM usuarios where nombre = '$nombre'";
+    	mysqli_select_db('t_shirts');
+    	$resultado = mysqli_query($conn,$sql);
+	//mostramos fila x fila
+
+	echo '<div class="container-fluid">
+	      <div class="row">
+	      <div class="col-sm-12">';
+	echo '<div class="panel panel-success" >
+	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/status/meeting-chair.png"  class="img-reponsive img-rounded"> Mis Datos</div><br>';
+
+            echo "<table class='display compact' id='myTable'>";
+              echo "<thead>
+		    <th class='text-nowrap text-center'>ID</th>
+                    <th class='text-nowrap text-center'>Nombre y Apellido</th>
+                    <th class='text-nowrap text-center'>Usuario</th>
+                    <th class='text-nowrap text-center'>Role</th>
+                    <th>&nbsp;</th>
+                    </thead>";
+
+
+	while($fila = mysqli_fetch_array($resultado)){
+			  // Listado normal
+			 echo "<tr>";
+			 echo "<td align=center>".$fila['id']."</td>";
+			 echo "<td align=center>".$fila['nombre']."</td>";
+			 echo "<td align=center>".$fila['user']."</td>";
+			 echo "<td align=center>".$fila['role']."</td>";
+			 echo "<td class='text-nowrap'>";
+			 echo '<a href="../usuario/editPassword.php?id='.$fila['id'].'" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-refresh"></span> Cambiar Password</a>';echo "</td>";
+		}
+
+		echo "</table>";
+		echo "<br><br><hr>";
+		echo '</div>';
+		echo '</div>
+		      </div>
+		      </div>
+		      </div>';
+		}else{
+		  echo 'Connection Failure...';
+		}
+
+    mysqli_close($conn);
+
+
+}
+
 /*
 * Funcion para mostrar los datos de usuario.-
 */
@@ -136,7 +199,10 @@ if($conn)
     	$resultado = mysqli_query($conn,$sql);
 	//mostramos fila x fila
 
-	echo '<div class="panel panel-warning" >
+	echo '<div class="container-fluid">
+	      <div class="row">
+	      <div class="col-sm-12">';
+	echo '<div class="panel panel-success" >
 	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/actions/user-group-properties.png"  class="img-reponsive img-rounded"> Mis Datos</div><br>';
 
             echo "<table class='display compact' id='myTable'>";
@@ -144,10 +210,10 @@ if($conn)
 		    <th class='text-nowrap text-center'>ID</th>
                     <th class='text-nowrap text-center'>Nombre y Apellido</th>
                     <th class='text-nowrap text-center'>E-mail</th>
+                    <th class='text-nowrap text-center'>Celular</th>
                     <th class='text-nowrap text-center'>Dirección</th>
                     <th class='text-nowrap text-center'>Localidad</th>
-                    <th class='text-nowrap text-center'>Teléfono</th>
-                    <th class='text-nowrap text-center'>Celular</th>
+                    <th class='text-nowrap text-center'>Provincia</th>
                     <th>&nbsp;</th>
                     </thead>";
 
@@ -158,19 +224,23 @@ if($conn)
 			 echo "<td align=center>".$fila['id']."</td>";
 			 echo "<td align=center>".$fila['nombre']."</td>";
 			 echo "<td align=center>".$fila['email']."</td>";
+			 echo "<td align=center>".$fila['celular']."</td>";
 			 echo "<td align=center>".$fila['direccion']."</td>";
 			 echo "<td align=center>".$fila['localidad']."</td>";
-			 echo "<td align=center>".$fila['telefono']."</td>";
-			 echo "<td align=center>".$fila['celular']."</td>";
+			 echo "<td align=center>".$fila['provincia']."</td>";
 			 echo "<td class='text-nowrap'>";
-			 echo '<a href="editar.php?id='.$fila['id'].'" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Editar</a>';
-			 echo '<a href="editPassword.php?id='.$fila['id'].'" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-refresh"></span> Cambiar Password</a>';
+			 echo '<a href="../usuario/editar.php?id='.$fila['id'].'" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Editar</a>';
+			 echo '<a href="../usuario/editPassword.php?id='.$fila['id'].'" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-refresh"></span> Cambiar Password</a>';
 			 echo "</td>";
 		}
 
 		echo "</table>";
 		echo "<br><br><hr>";
 		echo '</div>';
+		echo '</div>
+		      </div>
+		      </div>
+		      </div>';
 		}else{
 		  echo 'Connection Failure...';
 		}
@@ -255,23 +325,32 @@ function loadUserAsk($nombre,$conn){
 
 if($conn)
 {
-	$sql = "SELECT * FROM pedidos where nombre = '$nombre'";
+	$sql = "SELECT * FROM pedidos where cliente = '$nombre'";
     	mysqli_select_db('t_shirts');
     	$resultado = mysqli_query($conn,$sql);
 	//mostramos fila x fila
 	$count = 0;
-	echo '<div class="panel panel-warning" >
-	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/apps/knotes.png"  class="img-reponsive img-rounded"> Mis Pedidos</div><br>';
+	
+	echo '<div class="container-fluid">
+	      <div class="row">
+	      <div class="col-sm-12">';
+	echo '<div class="panel panel-success" >
+	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/status/wallet-open.png"  class="img-reponsive img-rounded"> Mis Pedidos</div><br>';
 
             echo "<table class='display compact' id='myTable'>";
               echo "<thead>
 		    <th class='text-nowrap text-center'>ID</th>
-                    <th class='text-nowrap text-center'>Producto</th>
-                    <th class='text-nowrap text-center'>Cantidad</th>
+		    <th class='text-nowrap text-center'>Fecha Compra</th>
+		    <th class='text-nowrap text-center'>Cod. Producto</th>
+		    <th class='text-nowrap text-center'>Talle</th>
+                    <th class='text-nowrap text-center'>Descipción</th>
                     <th class='text-nowrap text-center'>Importe</th>
+                    <th class='text-nowrap text-center'>Cantidad</th>
                     <th class='text-nowrap text-center'>Cliente</th>
-                    <th class='text-nowrap text-center'>Dirección</th>
+                    <th class='text-nowrap text-center'>Email</th>
                     <th class='text-nowrap text-center'>Celular</th>
+                    <th class='text-nowrap text-center'>Direccion</th>
+                    <th class='text-nowrap text-center'>Localidad</th>
 		    <th class='text-nowrap text-center'>A Entregar</th>
                     <th>&nbsp;</th>
                     </thead>";
@@ -281,13 +360,18 @@ if($conn)
 			  // Listado normal
 			 echo "<tr>";
 			 echo "<td align=center>".$fila['id']."</td>";
-			 echo "<td align=center>".$fila['producto']."</td>";
+			 echo "<td align=center>".$fila['f_pedido']."</td>";
+			 echo "<td align=center>".$fila['cod_prod']."</td>";
+			 echo "<td align=center>".$fila['talle']."</td>";
+			 echo "<td align=center>".$fila['descripcion']."</td>";
+			 echo "<td align=center>".$fila['importe']."</td>";
 			 echo "<td align=center>".$fila['cantidad']."</td>";
-			 echo "<td align=center>".$fila['precio']."</td>";
 			 echo "<td align=center>".$fila['cliente']."</td>";
-			 echo "<td align=center>".$fila['direccion']."</td>";
+			 echo "<td align=center>".$fila['email']."</td>";
 			 echo "<td align=center>".$fila['celular']."</td>";
-			 echo "<td align=center>".$fila['f_entrega']."</td>";
+			 echo "<td align=center>".$fila['direccion']."</td>";
+			 echo "<td align=center>".$fila['localidad']."</td>";
+			 echo "<td align=center>".$fila['provincia']."</td>";
 			 echo "<td class='text-nowrap'>";
 			 echo '<a href="editar.php?id='.$fila['id'].'" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Editar</a>';
 			 echo '<a href="editPassword.php?id='.$fila['id'].'" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-refresh"></span> Cambiar Password</a>';
@@ -299,6 +383,10 @@ if($conn)
 		echo "<br><br><hr>";
 		echo '<button type="button" class="btn btn-primary">Cantidad de Pedidos:  ' .$count; echo '</button>';
 		echo '</div>';
+		echo '</div>
+		      </div>
+		      </div>
+		      </div>';
 		}else{
 		  echo 'Connection Failure...';
 		}
@@ -514,14 +602,19 @@ if($conn)
     	$resultado = mysqli_query($conn,$sql);
 	//mostramos fila x fila
 	$count = 0;
-	echo '<div class="panel panel-warning" >
-	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/actions/view-catalog.png"  class="img-reponsive img-rounded"> Productos';
+	echo '<div class="container-fluid">
+	      <div class="row">
+	      <div class="col-sm-12">';
+	echo '<div class="panel panel-success" >
+	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/actions/feed-subscribe.png"  class="img-reponsive img-rounded"> Productos';
 	echo '</div><br>';
 
             echo "<table class='display compact' id='myTable'>";
               echo "<thead>
 		    <th class='text-nowrap text-center'>ID</th>
-		    <th class='text-nowrap text-center'>Imagen</th>
+		    <th class='text-nowrap text-center'>Producto</th>
+		    <th class='text-nowrap text-center'>Cod. Producto</th>
+		    <th class='text-nowrap text-center'>Tipo</th>
 		    <th class='text-nowrap text-center'>Descripción</th>
                     <th class='text-nowrap text-center'>Precio</th>
                     
@@ -534,10 +627,12 @@ if($conn)
 			 echo "<tr>";
 			 echo "<td align=center>".$fila['id']."</td>";
 			 echo "<td align=center><img src='$fila[imagen]' alt='Avatar' class='avatar' ></td>"; 
+			 echo "<td align=center>".$fila['cod_prod']."</td>";
+			 echo "<td align=center>".$fila['tipo']."</td>";
 			 echo "<td align=center>".$fila['descripcion']."</td>";
-			 echo "<td align=center>".$fila['precio']."</td>";
+			 echo "<td align=center>$ ".$fila['importe']."</td>";
 			 echo "<td class='text-nowrap'>";
-			 echo '<a href="productos/nuevoPedido.php?id='.$fila['id'].'" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-shopping-cart"></span> Hacer Pedido</a>';
+			 echo '<a href="../productos/newPedido.php?id='.$fila['id'].'" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-shopping-cart"></span> Comprar</a>';
 			 echo "</td>";
 			 $count++;
 		}
@@ -545,7 +640,11 @@ if($conn)
 		echo "</table>";
 		echo "<br>";
 		echo '<button type="button" class="btn btn-primary">Cantidad de Registros:  ' .$count; echo '</button>';
-		echo '</div>';
+		echo '</div>
+		      </div>
+		      </div>
+		      </div>';
+		      
 		}else{
 		  echo 'Connection Failure...';
 		}
