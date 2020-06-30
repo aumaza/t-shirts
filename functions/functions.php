@@ -337,6 +337,18 @@ if($conn)
 	echo '<div class="panel panel-success" >
 	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/status/wallet-open.png"  class="img-reponsive img-rounded"> Mis Pedidos</div><br>';
 
+	      echo '<div class="section"><br>
+			      <div class="container">
+			      <div class="row">
+			      <div class="col-md-12">';
+			echo '<div class="alert alert-warning" role="alert">';
+			echo '<span class="pull-center "><img src="../../icons/status/task-attempt.png"  class="img-reponsive img-rounded"> <strong>Importante:</strong> A partir del momento en que el estado del Pedido sea "Aprobado", tendrá una demora de 4 a 7 días para la entrega.';
+			echo "</div>";
+			echo "</div>";
+			echo "</div>";
+			echo "</div>";
+			echo "</div>";
+	      
             echo "<table class='display compact' id='myTable'>";
               echo "<thead>
 		    <th class='text-nowrap text-center'>ID</th>

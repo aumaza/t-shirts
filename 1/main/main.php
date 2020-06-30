@@ -88,11 +88,19 @@
     }
    
     /* Add a gray background color and some padding to the footer */
-    footer {
-      background-color: #f2f2f2;
-      padding: 25px;
-    }
-    .avatar {
+     footer {
+    background-color: #2d2d30;
+    color: #f5f5f5;
+    padding: 32px;
+  }
+  footer a {
+    color: #f5f5f5;
+  }
+  footer a:hover {
+    color: #777;
+    text-decoration: none;
+  }
+  .avatar {
   vertical-align: middle;
   horizontal-align: right;
   width: 100px;
@@ -101,7 +109,7 @@
   }
   </style>
 </head>
-<body>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 
 <div class="jumbotron">
   <div class="container text-center">
@@ -112,7 +120,7 @@
   </div>
 </div>
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -135,7 +143,7 @@
        </form>
     </div>
   </div>
-</nav>
+</nav><br>
 
 	      <div class="container">
 	      <div class="row">
@@ -224,6 +232,16 @@
 
 
 ?>
+
+<!-- Footer -->
+<footer class="text-center">
+  <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a><br><br>
+  <p><b>Contacto</b></p>
+  <p>Email: store.tshirt.onweb@gmail.com</p><hr>
+  <p>Powered By GNU/Linux</p> 
+</footer>
 
 <!-- Modal QR-->
 <div id="myModal" class="modal fade" role="dialog">

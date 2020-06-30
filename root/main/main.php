@@ -126,7 +126,7 @@
   }
   </style>
 </head>
-<body>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
 
 <div class="jumbotron">
   <div class="container text-center">
@@ -138,7 +138,7 @@
   </div>
 </div>
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -163,7 +163,7 @@
        </form>
     </div>
   </div>
-</nav>
+</nav><br>
 	      <div class="container">
 	      <div class="row">
 	      <div class="col-sm-12">
