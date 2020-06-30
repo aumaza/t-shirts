@@ -66,9 +66,9 @@ CREATE TABLE `pedidos` (
   `direccion` varchar(60) NOT NULL,
   `localidad` varchar(60) NOT NULL,
   `provincia` varchar(90) NOT NULL,
-  `f_entrega` date NOT NULL,
+  `estado` enum('stand-by','Aprobado') DEFAULT 'stand-by',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -77,6 +77,7 @@ CREATE TABLE `pedidos` (
 
 LOCK TABLES `pedidos` WRITE;
 /*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
+INSERT INTO `pedidos` VALUES (1,'2020-06-30','REM-000001','XL','REMERA STONES NEGRA',400.00,1,'Augusto Maza','debianmaza@gmail.com','1161669201','Felix de Azara 1871 1C','Banfield','Buenos Aires','stand-by'),(2,'2020-06-30','REM-000003','XL','REMERA THE CURE NEGRA',1200.00,3,'Augusto Maza','debianmaza@gmail.com','1161669201','Felix de Azara 1871 1C','Banfield','Buenos Aires','stand-by'),(3,'2020-06-30','REM-000002','XL','REMERA GUNS BLANCA',400.00,1,'Augusto Maza','debianmaza@gmail.com','1161669201','Felix de Azara 1871 1C','Banfield','Buenos Aires','stand-by'),(4,'2020-06-30','REM-000001','M','REMERA STONES NEGRA',800.00,2,'Augusto Maza','debianmaza@gmail.com','1161669201','Felix de Azara 1871 1C','Banfield','Buenos Aires','stand-by');
 /*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,7 +132,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'Administrador','root','tshirtsadm',1),(3,'Nicolas Maza','enimaza','enimaza123',1),(4,'Augusto Maza','aumaza','linux1303',1);
+INSERT INTO `usuarios` VALUES (1,'Administrador','root','tshirtsadm',1),(3,'Nicolas Maza','enimaza','enimaza123',1),(4,'Augusto Maza','aumaza','slack142',1);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -144,4 +145,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-29 10:43:17
+-- Dump completed on 2020-06-30 16:52:31
