@@ -230,7 +230,7 @@ if($conn)
 			 echo "<td align=center>".$fila['provincia']."</td>";
 			 echo "<td class='text-nowrap'>";
 			 echo '<a href="../usuario/editar.php?id='.$fila['id'].'" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Editar</a>';
-			 echo '<a href="../usuario/editPassword.php?id='.$fila['id'].'" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-refresh"></span> Cambiar Password</a>';
+			 echo '<a href="../usuario/editPassword.php?nombre='.$fila['nombre'].'" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-refresh"></span> Cambiar Password</a>';
 			 echo "</td>";
 		}
 
@@ -351,7 +351,8 @@ if($conn)
                     <th class='text-nowrap text-center'>Celular</th>
                     <th class='text-nowrap text-center'>Direccion</th>
                     <th class='text-nowrap text-center'>Localidad</th>
-		    <th class='text-nowrap text-center'>A Entregar</th>
+		    <th class='text-nowrap text-center'>Provincia</th>
+                    <th class='text-nowrap text-center'>Estado</th>
                     <th>&nbsp;</th>
                     </thead>";
 
@@ -372,10 +373,9 @@ if($conn)
 			 echo "<td align=center>".$fila['direccion']."</td>";
 			 echo "<td align=center>".$fila['localidad']."</td>";
 			 echo "<td align=center>".$fila['provincia']."</td>";
+			 echo "<td align=center>".$fila['estado']."</td>";
 			 echo "<td class='text-nowrap'>";
-			 echo '<a href="editar.php?id='.$fila['id'].'" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Editar</a>';
-			 echo '<a href="editPassword.php?id='.$fila['id'].'" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-refresh"></span> Cambiar Password</a>';
-			 echo "</td>";
+			 echo ' <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-qrcode"></span> QR</button>';
 			 $count++;
 		}
 

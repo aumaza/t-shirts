@@ -138,29 +138,7 @@
 		 $cl_localidad = mysqli_real_escape_string($conn,$_POST["cl_localidad"]);
 		 $cl_provincia = mysqli_real_escape_string($conn,$_POST["cl_provincia"]);
 	 
-		  //claves token de acceso
-		  $test_access_token = 'TEST-2859750532230724-063000-bd118b89a2a0acc5c2d7f8f107144692-216891779';
-		  $public_key_token = 'TEST-5bb684fa-5792-4407-b3f7-899bf44831ab';
-		  
-		  require '../../vendor/autoload.php';
-		  MercadoPago\SDK::setAccessToken($test_access_token);
-
-		  $payment = new MercadoPago\Payment();
-		  
 		 
-		$payment->transaction_amount = $importe;
-		$payment->token = $public_key_token;
-		$payment->description = $descripcion;
-		$payment->installments = 1;
-		$payment->payment_method_id = "visa";
-		$payment->payer = array(
-		  "nombre" => $cl_nombre,
-		  "email" => $cl_email
-		);
-
-		$payment->save();
-
-		echo $payment->status;
 	 
 		
 		

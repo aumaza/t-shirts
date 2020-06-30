@@ -15,10 +15,6 @@
 	}
 	
 	$id = $_GET['id'];
-      $sql = "SELECT * FROM usuarios WHERE user = '$varsession'";
-      mysqli_select_db('t_shirts');
-      $resultado = mysqli_query($conn,$sql);
-      $fila = mysqli_fetch_assoc($resultado);
 
 
 ?>
@@ -26,7 +22,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <title>Usuario - Editar Password</title>
+  <title>Usuario - Password Actualizado</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="../../icons/categories/preferences-desktop.png" />
@@ -73,21 +69,6 @@
 
   </script>
   <!-- END Data Table Script -->
-  
-   <script >
-	function limitText(limitField, limitNum) {
-       if (limitField.value.length > limitNum) {
-          
-           alert("Ha ingresado más caracteres de los requeridos, deben ser: \n" + limitNum);
-            limitField.value = limitField.value.substring(0, limitNum);
-       }
-       
-       if(limitField.value.lenght < limitNum){
-	  alert("Ha ingresado menos caracteres de los requeridos, deben ser:  \n"  + limitNum);
-            limitField.value = limitField.value.substring(0, limitNum);
-       }
-}
-</script>
   
 
   <style>
@@ -137,54 +118,26 @@
 	  <div class="container">
 	      <div class="row">
 	      <div class="col-sm-12">
-	  <div class="panel panel-success" >
-	      <div class="panel-heading">
-	      <span class="pull-center "><img src="../../icons/actions/document-edit.png"  class="img-reponsive img-rounded"> Usuario - Editar Password
-	      </div>
-	      <br>
-	  
-	   <form action="form_update_pass.php" method="POST">
-	   <input type="hidden" id="id" name="id" value="<?php echo $fila['id']; ?>" />
-	   
-	   <div class="container">
-	   <div class="row">
-	   <div class="col-sm-5">
-	    <div class="form-group">
-                        <label for="inputName">Nombre</label>
-                        <input type="text" class="form-control" id="inputName" name="nombre" value="<?php echo $fila['nombre'] ?>" readonly required/>
-                    </div></div>
-                    
-                    <div class="col-sm-5">
-                    <div class="form-group">
-                        <label for="inputEmail">Usuario</label>
-                        <input type="text" class="form-control" id="inputUser" name="user" value="<?php echo $fila['user']; ?>" readonly required/>
-                    </div></div></div></div><hr>
-                    
-                     <div class="container">
-		    <div class="row">
-		    <div class="col-sm-5">
-                    <div class="form-group">
-                        <label for="inputMessage">Password</label>
-                        <input type="password" class="form-control" id="inputPassword" name="pass1" onKeyDown="limitText(this,10);" onKeyUp="limitText(this,10);" required/>
-                    </div></div>
-                    
-                    <div class="col-sm-5">
-                    <div class="form-group">
-                        <label for="inputMessage">Repetir Password</label>
-                        <input type="password" class="form-control" id="inputPassword1" name="pass2" onKeyDown="limitText(this,10);" onKeyUp="limitText(this,10);" required />
-                    </div></div></div></div><hr>
-	  
-	  <div class="container">
-	   <div class="row">
-	   <div class="col-sm-12" align="center">
-	  <div class="form-group">
-	    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span>  Editar</button>
-	    </div>
-	  </div></div></div>
-	 </form> 
-	  
-	  
-	  
+	 
+	 <?php 
+	 
+	 if($conn){
+		
+		$id = mysqli_real_escape_string($conn,$_POST["id"]);
+		$user = mysqli_real_escape_string($conn,$_POST["user"]);
+		$pass1 = mysqli_real_escape_string($conn,$_POST["pass1"]);
+		$pass2 = mysqli_real_escape_string($conn,$_POST["pass2"]);
+		
+		updatePass($id,$pass1,$pass2,$conn);
+		}
+	//cerramos la conexion
+	
+	mysqli_close($conn);
+	 
+	 
+	
+	 
+	 ?>
 	  
 	  
 	  </div>

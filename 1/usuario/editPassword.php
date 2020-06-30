@@ -14,11 +14,11 @@
 	die();
 	}
 	
-	$id = $_GET['id'];
-      $sql = "SELECT * FROM usuarios WHERE user = '$varsession'";
-      mysqli_select_db('t_shirts');
-      $resultado = mysqli_query($conn,$sql);
-      $fila = mysqli_fetch_assoc($resultado);
+	$nombre = $_GET['nombre'];
+	$sql = "SELECT * FROM usuarios WHERE nombre = '$nombre'";
+	mysqli_select_db('t_shirts');
+	$resultado = mysqli_query($conn,$sql);
+	$fila = mysqli_fetch_assoc($resultado);
 
 
 ?>
@@ -145,6 +145,7 @@
 	  
 	   <form action="form_update_pass.php" method="POST">
 	   <input type="hidden" id="id" name="id" value="<?php echo $fila['id']; ?>" />
+	   
 	   
 	   <div class="container">
 	   <div class="row">

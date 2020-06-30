@@ -39,15 +39,7 @@
       $cl_localidad = $_GET['cl_localidad'];
       $cl_provincia = $_GET['cl_provincia'];
       
-      if($cantidad == 1){
-	$resultado =  $importe;
-      }else{
-	$resultado = $cantidad * $importe;
-      }
-      
-      
-
-
+     
 ?>
 
 <!DOCTYPE html>
@@ -145,6 +137,21 @@
     <a href="../main/main.php"><button class="btn btn-default"><img src="../../icons/actions/arrow-left.png" /><strong> Volver</strong></button></a>
   </div>
 </div><br>
+      <?php 
+      if($cantidad < 1){
+	 echo '<div class="alert alert-danger" role="alert">';
+	 echo 'La cantidad mínima debe ser 1';
+         echo "</div>";
+	 echo '<meta http-equiv="refresh" content="6;URL=http:../main/main.php"/>';
+	 exit;
+      }if($cantidad == 1){
+	$resultado =  $importe;
+      }else{
+	$resultado = $cantidad * $importe;
+      }
+      
+      
+      ?>
 
 	  <div class="container">
 	      <div class="row">
@@ -235,6 +242,20 @@
 	     <span class="input-group-addon">Provincia</span>
 	      <input id="text" type="text" class="form-control" name="cl_provincia" value="<?php echo $cl_provincia; ?>" readonly required>
 	    </div></div></div></div><hr>
+	    
+	    
+	    <div class="container">    
+	  <div class="row">
+	<div class="col-sm-5">
+      <div class="panel panel-default">
+        <div class="panel-heading">Scanea el Código QR con la APP Mercado Pago en tu Celular. <strong>Recordá que si das a Finalizar sin haber scaneado y pagado,
+         el pedido quedará en stand-by hasta que se registre el pago correspondiente.</strong></div>
+        <div class="panel-body"><img src="../../img/qr_mp.png" class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="panel-footer">Tu importe es: $<?php echo $resultado; ?></div>
+      </div>
+    </div>
+	  </div>
+	  </div><hr>
 	  
 	  
 	  <div class="container">
