@@ -250,7 +250,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">Scanea el Código QR con la APP Mercado Pago en tu Celular. <strong>Recordá que si das a Finalizar sin haber scaneado y pagado,
          el pedido quedará en stand-by hasta que se registre el pago correspondiente.</strong></div>
-        <div class="panel-body"><img src="../../img/qr_mp.png" class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="panel-body"><img src="../../img/qr_mp_tshirts.png" class="img-responsive" style="width:100%" alt="Image"></div>
         <div class="panel-footer">Tu importe es: $<?php echo $resultado; ?></div>
       </div>
     </div>

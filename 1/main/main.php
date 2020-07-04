@@ -259,7 +259,7 @@
          <div class="col-sm-4">
 	  <div class="panel panel-default">
 	  <div class="panel-heading" align="center">QR</div>
-	  <div class="panel-body"><img src="../../img/qr_mp.png" class="img-responsive" style="width:100%" alt="Image"></div>
+	  <div class="panel-body"><img src="../../img/qr_mp_tshirts.png" class="img-responsive" style="width:100%" alt="Image"></div>
         <div class="panel-footer">Gracias!</div>
       </div>
     </div>
