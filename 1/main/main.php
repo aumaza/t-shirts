@@ -28,7 +28,7 @@
 	while($fila = mysqli_fetch_array($res)){
 	      $count++;
 	}
-	$msg1 = "Aún no han tiene Pedidos Aprobados"; 
+	$msg1 = "Aún no tiene Pedidos Aprobados"; 
 	$msg2 = "Tiene ".$count. " pedido/s Aprobado/s";
 	
 	if($count == 0){
