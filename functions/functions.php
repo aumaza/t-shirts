@@ -1,4 +1,28 @@
 <?php
+
+/*
+** Funcion que carga el skeleto del sistema
+*/
+
+function skeleton(){
+  echo '<link rel="stylesheet" href="/t-shirts/skeleton/css/bootstrap.min.css" >
+	<link rel="stylesheet" href="/t-shirts/skeleton/css/bootstrap-theme.css" >
+	<link rel="stylesheet" href="/t-shirts/skeleton/css/bootstrap-theme.min.css" >
+	<link rel="stylesheet" href="/t-shirts/skeleton/css/fontawesome.css">
+	<link rel="stylesheet" href="/t-shirts/skeleton/css/fontawesome.min.css" >
+	<link rel="stylesheet" href="/t-shirts/skeleton/css/jquery.dataTables.min.css" >
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+	<script src="/t-shirts/skeleton/js/jquery-3.4.1.min.js"></script>
+	<script src="/t-shirts/skeleton/js/bootstrap.min.js"></script>
+	
+	<script src="/t-shirts/skeleton/js/jquery.dataTables.min.js"></script>
+	<script src="/t-shirts/skeleton/js/dataTables.editor.min.js"></script>
+	<script src="/t-shirts/skeleton/js/dataTables.select.min.js"></script>
+	<script src="/t-shirts/skeleton/js/dataTables.buttons.min.js"></script>';
+}
+
+
 /*
 * Funcion para agregar usuarios al sistema
 */
@@ -418,7 +442,7 @@ function loadAsk($conn){
 
 if($conn)
 {
-	$sql = "SELECT * FROM pedidos";
+	$sql = "SELECT * FROM pedidos where estado = 'stand-by'";
     	mysqli_select_db('t_shirts');
     	$resultado = mysqli_query($conn,$sql);
 	//mostramos fila x fila
@@ -488,6 +512,85 @@ if($conn)
 
 }
 
+
+/*
+* Funcion para mostrar los pedidos de usuario.-
+*/
+
+function loadVentas($conn){
+
+
+if($conn)
+{
+	$sql = "SELECT * FROM pedidos where estado = 'Aprobado'";
+    	mysqli_select_db('t_shirts');
+    	$resultado = mysqli_query($conn,$sql);
+	//mostramos fila x fila
+	$count = 0;
+	echo '<div class="container-fluid">
+	      <div class="row">
+	      <div class="col-sm-12">';
+	echo '<div class="panel panel-success" >
+	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/actions/view-income-categories.png"  class="img-reponsive img-rounded"> Ventas</div><br>';
+
+            echo "<table class='display compact' id='myTable'>";
+              echo "<thead>
+		    <th class='text-nowrap text-center'>ID</th>
+		    <th class='text-nowrap text-center'>Fecha Compra</th>
+		    <th class='text-nowrap text-center'>Cod. Producto</th>
+		    <th class='text-nowrap text-center'>Talle</th>
+                    <th class='text-nowrap text-center'>Descipción</th>
+                    <th class='text-nowrap text-center'>Importe</th>
+                    <th class='text-nowrap text-center'>Cantidad</th>
+                    <th class='text-nowrap text-center'>Cliente</th>
+                    <th class='text-nowrap text-center'>Email</th>
+                    <th class='text-nowrap text-center'>Celular</th>
+                    <th class='text-nowrap text-center'>Direccion</th>
+                    <th class='text-nowrap text-center'>Localidad</th>
+		    <th class='text-nowrap text-center'>Provincia</th>
+                    <th class='text-nowrap text-center'>Estado</th>
+                    <th>&nbsp;</th>
+                    </thead>";
+
+
+	while($fila = mysqli_fetch_array($resultado)){
+			  // Listado normal
+			 echo "<tr>";
+			 echo "<td align=center>".$fila['id']."</td>";
+			 echo "<td align=center>".$fila['f_pedido']."</td>";
+			 echo "<td align=center>".$fila['cod_prod']."</td>";
+			 echo "<td align=center>".$fila['talle']."</td>";
+			 echo "<td align=center>".$fila['descripcion']."</td>";
+			 echo "<td align=center>".$fila['importe']."</td>";
+			 echo "<td align=center>".$fila['cantidad']."</td>";
+			 echo "<td align=center>".$fila['cliente']."</td>";
+			 echo "<td align=center>".$fila['email']."</td>";
+			 echo "<td align=center>".$fila['celular']."</td>";
+			 echo "<td align=center>".$fila['direccion']."</td>";
+			 echo "<td align=center>".$fila['localidad']."</td>";
+			 echo "<td align=center>".$fila['provincia']."</td>";
+			 echo "<td align=center>".$fila['estado']."</td>";
+			 echo "<td class='text-nowrap'>";
+			 echo '<a href="../ventas/comprobante.php?id='.$fila['id'].'" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-print"></span> Imprimir Comprobante</a>';
+			 echo "</td>";
+		}
+
+		echo "</table>";
+		echo "<br><br><hr>";
+		echo '<button type="button" class="btn btn-primary">Cantidad de Pedidos:  ' .$count; echo '</button>';
+		echo '</div>';
+		echo '</div>
+		      </div>
+		      </div>
+		      </div>';
+		}else{
+		  echo 'Connection Failure...';
+		}
+
+    mysqli_close($conn);
+
+
+}
 
 /*
 * Funcion para mostrar localidades.-

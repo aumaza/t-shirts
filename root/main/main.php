@@ -20,7 +20,21 @@
 	echo '<a href="../../logout.php"><br><br><button type="submit" class="btn btn-primary">Aceptar</button></a>';	
 	die();
 	}
+	$date = strftime("%Y-%m-%d");
+	$query = "select * from pedidos where estado = 'stand-by' and f_pedido = '$date' order by f_pedido desc";
+	mysqli_select_db('t_shirts');
+	$res = mysqli_query($conn,$query);
+	while($fila = mysqli_fetch_array($res)){
+	      $count++;
+	}
+	$msg1 = "Aún no han ingresado Pedidos"; 
+	$msg2 = "Tiene ".$count. " pedidos nuevos";
 	
+	if($count == 0){
+	    echo "<script type='text/javascript'>alert('$msg1');</script>";
+	}else{
+	    echo "<script type='text/javascript'>alert('$msg2');</script>";
+	    }
 	
 
 ?>
@@ -32,22 +46,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="../../icons/categories/preferences-desktop.png" />
-	<link rel="stylesheet" href="/t-shirts/skeleton/css/bootstrap.min.css" >
-	<link rel="stylesheet" href="/t-shirts/skeleton/css/bootstrap-theme.css" >
-	<link rel="stylesheet" href="/t-shirts/skeleton/css/bootstrap-theme.min.css" >
-	<link rel="stylesheet" href="/t-shirts/skeleton/css/fontawesome.css">
-	<link rel="stylesheet" href="/t-shirts/skeleton/css/fontawesome.min.css" >
-	<link rel="stylesheet" href="/t-shirts/skeleton/css/jquery.dataTables.min.css" >
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
-	<script src="/t-shirts/skeleton/js/jquery-3.4.1.min.js"></script>
-	<script src="/t-shirts/skeleton/js/bootstrap.min.js"></script>
-	
-	<script src="/t-shirts/skeleton/js/jquery.dataTables.min.js"></script>
-	<script src="/t-shirts/skeleton/js/dataTables.editor.min.js"></script>
-	<script src="/t-shirts/skeleton/js/dataTables.select.min.js"></script>
-	<script src="/t-shirts/skeleton/js/dataTables.buttons.min.js"></script>
-  
+	<?php skeleton();?>
   
 	<!-- Data Table Script -->
 <script>
@@ -90,6 +89,21 @@
        }
 }
 </script>
+
+<!-- block mouse left-button   -->
+  <script>
+      $(document).bind("contextmenu",function(e) {
+    e.preventDefault();
+    });
+  </script>
+<!-- block F12 development mode -->
+  <script>
+      $(document).keydown(function(e){
+	if(e.which === 123){
+	  return false;
+	}
+    });
+  </script>
   
 
   <style>
@@ -182,11 +196,13 @@
   if($conn){
   
 	    if(isset($_POST['A'])){
-	    
-		  addProductos($conn);
+	    	  addProductos($conn);
 	    }
 	    if(isset($_POST['B'])){
 		  loadUsers($conn);
+	    }
+	    if(isset($_POST['C'])){
+		  loadVentas($conn);
 	    }
 	    if(isset($_POST['D'])){
 		  loadRoot($nombre,$conn);

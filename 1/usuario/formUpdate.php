@@ -26,23 +26,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="../../icons/categories/preferences-desktop.png" />
-	<link rel="stylesheet" href="/t-shirts/skeleton/css/bootstrap.min.css" >
-	<link rel="stylesheet" href="/t-shirts/skeleton/css/bootstrap-theme.css" >
-	<link rel="stylesheet" href="/t-shirts/skeleton/css/bootstrap-theme.min.css" >
-	<link rel="stylesheet" href="/t-shirts/skeleton/css/fontawesome.css">
-	<link rel="stylesheet" href="/t-shirts/skeleton/css/fontawesome.min.css" >
-	<link rel="stylesheet" href="/t-shirts/skeleton/css/jquery.dataTables.min.css" >
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
-	<script src="/t-shirts/skeleton/js/jquery-3.4.1.min.js"></script>
-	<script src="/t-shirts/skeleton/js/bootstrap.min.js"></script>
+	<?php skeleton();?>
 	
-	<script src="/t-shirts/skeleton/js/jquery.dataTables.min.js"></script>
-	<script src="/t-shirts/skeleton/js/dataTables.editor.min.js"></script>
-	<script src="/t-shirts/skeleton/js/dataTables.select.min.js"></script>
-	<script src="/t-shirts/skeleton/js/dataTables.buttons.min.js"></script>
-  
-  
 	<!-- Data Table Script -->
 <script>
 
@@ -69,6 +54,21 @@
 
   </script>
   <!-- END Data Table Script -->
+  
+  <!-- block mouse left-button   -->
+  <script>
+      $(document).bind("contextmenu",function(e) {
+    e.preventDefault();
+    });
+  </script>
+<!-- block F12 development mode -->
+  <script>
+      $(document).keydown(function(e){
+	if(e.which === 123){
+	  return false;
+	}
+    });
+  </script>
   
 
   <style>
