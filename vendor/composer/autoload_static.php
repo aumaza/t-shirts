@@ -4,77 +4,45 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInite4ada9cfa6ec2fcb2fbeefbb99052d59
+class ComposerStaticInit7ff4d5441cca87f7073e42dccfd2b1b0
 {
     public static $prefixLengthsPsr4 = array (
-        'M' => 
+        'S' => 
         array (
-            'MercadoPago\\' => 12,
-        ),
-        'D' => 
-        array (
-            'Doctrine\\Persistence\\' => 21,
-            'Doctrine\\Inflector\\' => 19,
-            'Doctrine\\Common\\Lexer\\' => 22,
-            'Doctrine\\Common\\Inflector\\' => 26,
-            'Doctrine\\Common\\Collections\\' => 28,
-            'Doctrine\\Common\\Cache\\' => 22,
-            'Doctrine\\Common\\Annotations\\' => 28,
-            'Doctrine\\Common\\' => 16,
+            'Spipu\\Html2Pdf\\' => 15,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'MercadoPago\\' => 
+        'Spipu\\Html2Pdf\\' => 
         array (
-            0 => __DIR__ . '/..' . '/mercadopago/dx-php/src/MercadoPago',
-            1 => __DIR__ . '/..' . '/mercadopago/dx-php/tests',
-            2 => __DIR__ . '/..' . '/mercadopago/dx-php/src/MercadoPago/Generic',
-            3 => __DIR__ . '/..' . '/mercadopago/dx-php/src/MercadoPago/Entities',
-            4 => __DIR__ . '/..' . '/mercadopago/dx-php/src/MercadoPago/Entities/Shared',
+            0 => __DIR__ . '/..' . '/spipu/html2pdf/src',
         ),
-        'Doctrine\\Persistence\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/doctrine/persistence/lib/Doctrine/Persistence',
-        ),
-        'Doctrine\\Inflector\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector',
-        ),
-        'Doctrine\\Common\\Lexer\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/doctrine/lexer/lib/Doctrine/Common/Lexer',
-        ),
-        'Doctrine\\Common\\Inflector\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Common/Inflector',
-        ),
-        'Doctrine\\Common\\Collections\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/doctrine/collections/lib/Doctrine/Common/Collections',
-        ),
-        'Doctrine\\Common\\Cache\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache',
-        ),
-        'Doctrine\\Common\\Annotations\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/doctrine/annotations/lib/Doctrine/Common/Annotations',
-        ),
-        'Doctrine\\Common\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
-            1 => __DIR__ . '/..' . '/doctrine/event-manager/lib/Doctrine/Common',
-            2 => __DIR__ . '/..' . '/doctrine/persistence/lib/Doctrine/Common',
-            3 => __DIR__ . '/..' . '/doctrine/reflection/lib/Doctrine/Common',
-        ),
+    );
+
+    public static $classMap = array (
+        'Datamatrix' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/barcodes/datamatrix.php',
+        'PDF417' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/barcodes/pdf417.php',
+        'QRcode' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/barcodes/qrcode.php',
+        'TCPDF' => __DIR__ . '/..' . '/tecnickcom/tcpdf/tcpdf.php',
+        'TCPDF2DBarcode' => __DIR__ . '/..' . '/tecnickcom/tcpdf/tcpdf_barcodes_2d.php',
+        'TCPDFBarcode' => __DIR__ . '/..' . '/tecnickcom/tcpdf/tcpdf_barcodes_1d.php',
+        'TCPDF_COLORS' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/tcpdf_colors.php',
+        'TCPDF_FILTERS' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/tcpdf_filters.php',
+        'TCPDF_FONTS' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/tcpdf_fonts.php',
+        'TCPDF_FONT_DATA' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/tcpdf_font_data.php',
+        'TCPDF_IMAGES' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/tcpdf_images.php',
+        'TCPDF_IMPORT' => __DIR__ . '/..' . '/tecnickcom/tcpdf/tcpdf_import.php',
+        'TCPDF_PARSER' => __DIR__ . '/..' . '/tecnickcom/tcpdf/tcpdf_parser.php',
+        'TCPDF_STATIC' => __DIR__ . '/..' . '/tecnickcom/tcpdf/include/tcpdf_static.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInite4ada9cfa6ec2fcb2fbeefbb99052d59::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInite4ada9cfa6ec2fcb2fbeefbb99052d59::$prefixDirsPsr4;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit7ff4d5441cca87f7073e42dccfd2b1b0::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit7ff4d5441cca87f7073e42dccfd2b1b0::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit7ff4d5441cca87f7073e42dccfd2b1b0::$classMap;
 
         }, null, ClassLoader::class);
     }

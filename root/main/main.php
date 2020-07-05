@@ -98,7 +98,7 @@
     });
   </script>
   
-
+  
   <style>
     /* Remove the navbar's default rounded borders and increase the bottom margin */ 
     .navbar {
@@ -161,6 +161,7 @@
 	<button type="submit" name="A" class="btn btn-default"><img class="img-reponsive img-rounded" src="../../icons/actions/feed-subscribe.png" /> Productos</button>
 	<button type="submit" name="B" class="btn btn-default"><img class="img-reponsive img-rounded" src="../../icons/actions/meeting-attending.png" /> Clientes</button>
 	<button type="submit" name="C" class="btn btn-default"><img class="img-reponsive img-rounded" src="../../icons/actions/view-income-categories.png" /> Ventas</button>
+	<button type="submit" name="F" class="btn btn-default"><img class="img-reponsive img-rounded" src="../../icons/actions/office-chart-bar.png" /> Análisis de Ventas</button>
 	</div> 
        </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -181,7 +182,7 @@
 	       
 	       <?php 
 		if($count == 0){
-		      echo '<div class="alert alert-success alert-dismissible">
+		      echo '<div class="alert alert-info alert-dismissible">
 			      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 			      <img class="img-reponsive img-rounded" src="../../icons/emotes/face-uncertain.png" /><strong> '.$msg1.'</strong>
 			    </div>';
@@ -197,6 +198,8 @@
 	      </div>
 	      </div>
 	      </div>
+	      
+	      
 
 
 <?php
@@ -218,7 +221,9 @@
 	    if(isset($_POST['E'])){
 		  loadAsk($conn);
 	    }
-	  
+	    if(isset($_POST['F'])){
+		  ventas_stats($conn);
+	    }
   
   
   }else{

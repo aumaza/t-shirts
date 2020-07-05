@@ -5,12 +5,15 @@
 */
 
 function skeleton(){
+
   echo '<link rel="stylesheet" href="/t-shirts/skeleton/css/bootstrap.min.css" >
 	<link rel="stylesheet" href="/t-shirts/skeleton/css/bootstrap-theme.css" >
 	<link rel="stylesheet" href="/t-shirts/skeleton/css/bootstrap-theme.min.css" >
 	<link rel="stylesheet" href="/t-shirts/skeleton/css/fontawesome.css">
 	<link rel="stylesheet" href="/t-shirts/skeleton/css/fontawesome.min.css" >
 	<link rel="stylesheet" href="/t-shirts/skeleton/css/jquery.dataTables.min.css" >
+	<link rel="stylesheet" href="/t-shirts/skeleton/Chart.js/Chart.min.css" >
+	<link rel="stylesheet" href="/t-shirts/skeleton/Chart.js/Chart.css" >
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
 	<script src="/t-shirts/skeleton/js/jquery-3.4.1.min.js"></script>
@@ -19,7 +22,12 @@ function skeleton(){
 	<script src="/t-shirts/skeleton/js/jquery.dataTables.min.js"></script>
 	<script src="/t-shirts/skeleton/js/dataTables.editor.min.js"></script>
 	<script src="/t-shirts/skeleton/js/dataTables.select.min.js"></script>
-	<script src="/t-shirts/skeleton/js/dataTables.buttons.min.js"></script>';
+	<script src="/t-shirts/skeleton/js/dataTables.buttons.min.js"></script>
+	
+	<script src="/t-shirts/skeleton/Chart.js/Chart.min.js"></script>
+	<script src="/t-shirts/skeleton/Chart.js/Chart.bundle.min.js"></script>
+	<script src="/t-shirts/skeleton/Chart.js/Chart.bundle.js"></script>
+	<script src="/t-shirts/skeleton/Chart.js/Chart.js"></script>';
 }
 
 
@@ -493,6 +501,7 @@ if($conn)
 			 echo "<td class='text-nowrap'>";
 			 echo '<a href="../pedidos/cambiarEstado.php?id='.$fila['id'].'" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Cambiar Estado</a>';
 			 echo "</td>";
+			 $count++;
 		}
 
 		echo "</table>";
@@ -571,13 +580,14 @@ if($conn)
 			 echo "<td align=center>".$fila['provincia']."</td>";
 			 echo "<td align=center>".$fila['estado']."</td>";
 			 echo "<td class='text-nowrap'>";
-			 echo '<a href="../ventas/comprobante.php?id='.$fila['id'].'" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-print"></span> Imprimir Comprobante</a>';
+			 echo '<a href="../ventas/comprobante.php?id='.$fila['id'].'" target="_blank" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-print"></span> Imprimir Comprobante</a>';
 			 echo "</td>";
+			 $count++;
 		}
 
 		echo "</table>";
-		echo "<br><br><hr>";
-		echo '<button type="button" class="btn btn-primary">Cantidad de Pedidos:  ' .$count; echo '</button>';
+		echo "<br>";
+		echo '<button type="button" class="btn btn-primary">Cantidad de Ventas:  ' .$count; echo '</button>';
 		echo '</div>';
 		echo '</div>
 		      </div>
@@ -785,6 +795,91 @@ if($conn)
 
 }
 
+/*
+** Funcion analisis de ventas
+*/
+
+function ventas_stats($conn){
+
+    $sql = "select sum(importe) as total from pedidos where estado = 'Aprobado'";
+    mysqli_select_db('t_shirts');
+    $res = mysqli_query($conn,$sql);
+    while($row = mysqli_fetch_array($res)){
+	      $total = $row['total'];
+	}
+	
+    $query = "select sum(importe) as total from pedidos where estado = 'stand-by'";
+    mysqli_select_db('t_shirts');
+    $resp = mysqli_query($conn,$query);
+    while($row = mysqli_fetch_array($resp)){
+	      $imp_ped = $row['total'];
+	}
+
+	
+echo '<div class="container">
+      <div class="row">
+      <div class="col-sm-12">
+      <div class="alert alert-success" role="alert">
+	       <img class="img-reponsive img-rounded" src="../../icons/actions/office-chart-bar.png" /> Análisis de Ventas
+	       </div><hr>
+
+   <div class="container">    
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">Total Ventas Finalizadas</div>
+        <div class="panel-body"><canvas id="myChart" width="400" height="400"></canvas></div>
+        <div class="panel-footer">Importe: $'.$total.'  </div>
+      </div>
+    </div>
+    <div class="col-sm-4"> 
+      <div class="panel panel-default">
+        <div class="panel-heading">Total Pedidos</div>
+        <div class="panel-body"></div>
+        <div class="panel-footer">Importe: $'.$imp_ped.'</div>
+      </div>
+    </div>
+    <div class="col-sm-4"> 
+      <div class="panel panel-default">
+        <div class="panel-heading">Remera The Cure (Negra)</div>
+        <div class="panel-body"></div>
+        <div class="panel-footer">Importe: $400</div>
+      </div>
+    </div>
+  </div>
+</div><br>
+
+<div class="container">    
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">Remera Guns and Roses (Blanca)</div>
+        <div class="panel-body"></div>
+        <div class="panel-footer">Importe: $400</div>
+      </div>
+    </div>
+    <div class="col-sm-4"> 
+      <div class="panel panel-default">
+        <div class="panel-heading">Remera Rocky Balboa (Blanca)</div>
+        <div class="panel-body"></div>
+        <div class="panel-footer">Importe: $400</div>
+      </div>
+    </div>
+    <div class="col-sm-4"> 
+      <div class="panel panel-default">
+        <div class="panel-heading">Remera Rolling Stones (Negra)</div>
+        <div class="panel-body"></div>
+        <div class="panel-footer">Importe: $400</div>
+      </div>
+    </div>
+  </div>
+</div><br><br>
+
+
+</div></div></div>';
+
+
+}
 
 
 ?>
