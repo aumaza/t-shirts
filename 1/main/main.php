@@ -31,13 +31,7 @@
 	$msg1 = "Aún no tiene Pedidos Aprobados"; 
 	$msg2 = "Tiene ".$count. " pedido/s Aprobado/s";
 	
-	if($count == 0){
-	    echo "<script type='text/javascript'>alert('$msg1');</script>";
-	}else{
-	    echo "<script type='text/javascript'>alert('$msg2');</script>";
-	    }
-
-
+	
 ?>
 
 <!DOCTYPE html>
@@ -162,13 +156,29 @@
   </div>
 </nav><br>
 
+
 	      <div class="container">
 	      <div class="row">
 	      <div class="col-sm-12">
 	       <div class="alert alert-success" role="alert">
 	       <h2 align="left"><img class="img-reponsive img-rounded" src="../../icons/devices/computer-laptop.png" /><strong> Vidriera Virtual</strong></h2>
-	       </div><hr>      
-	      
+	       </div><hr>
+	       
+	       <?php 
+		if($count == 0){
+		      echo '<div class="alert alert-success alert-dismissible">
+			      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			      <img class="img-reponsive img-rounded" src="../../icons/emotes/face-uncertain.png" /><strong> '.$msg1.'</strong>
+			    </div>';
+		  }else{
+		      echo '<div class="alert alert-success alert-dismissible">
+			      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			      <img class="img-reponsive img-rounded" src="../../icons/emotes/face-smile.png" /><strong> '.$msg2.'</strong>
+			    </div>';
+		      }
+      
+		?>
+	      <hr>
 	      </div>
 	      </div>
 	      </div>

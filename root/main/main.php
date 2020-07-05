@@ -30,13 +30,6 @@
 	$msg1 = "Aún no han ingresado Pedidos"; 
 	$msg2 = "Tiene ".$count. " pedidos nuevos";
 	
-	if($count == 0){
-	    echo "<script type='text/javascript'>alert('$msg1');</script>";
-	}else{
-	    echo "<script type='text/javascript'>alert('$msg2');</script>";
-	    }
-	
-
 ?>
 
 <!DOCTYPE html>
@@ -184,8 +177,23 @@
 	       <div class="alert alert-success" role="alert">
 	       <h2 align="center">Bienvenido!! <strong><?php echo $nombre ?></strong></h2>
 	       <h3 align="center">Seleccione desde los botones en el Panel la acción que desee realizar.</h3>
-	       </div><hr>      
-	      
+	       </div><hr>  
+	       
+	       <?php 
+		if($count == 0){
+		      echo '<div class="alert alert-success alert-dismissible">
+			      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			      <img class="img-reponsive img-rounded" src="../../icons/emotes/face-uncertain.png" /><strong> '.$msg1.'</strong>
+			    </div>';
+		  }else{
+		      echo '<div class="alert alert-success alert-dismissible">
+			      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			      <img class="img-reponsive img-rounded" src="../../icons/emotes/face-smile.png" /><strong> '.$msg2.'</strong>
+			    </div>';
+		      }
+      
+		?>
+	      <hr>
 	      </div>
 	      </div>
 	      </div>
