@@ -814,6 +814,13 @@ function ventas_stats($conn){
     while($row = mysqli_fetch_array($resp)){
 	      $imp_ped = $row['total'];
 	}
+	
+    $qry = "select count(cod_prod) as productos from pedidos where estado ='stand-by'";
+    mysqli_select_db('t_shirts');
+    $retval = mysqli_query($conn,$qry);
+    while($row = mysqli_fetch_array($retval)){
+	      $prod = $row['productos'];
+    }
 
 	
 echo '<div class="container">
@@ -827,23 +834,27 @@ echo '<div class="container">
   <div class="row">
     <div class="col-sm-4">
       <div class="panel panel-default">
-        <div class="panel-heading">Total Ventas Finalizadas</div>
-        <div class="panel-body"><canvas id="myChart" width="400" height="400"></canvas></div>
+        <div class="panel-heading"><img class="img-reponsive img-rounded" src="../../icons/actions/view-financial-transfer.png" /> Total Ventas Finalizadas</div>
+        <div class="panel-body" align="center">
+        <a href="../ventas/graf_ventas.php"><button type="button" class="btn btn-default"><span class="pull-center "><img src="../../icons/actions/view-statistics.png"  class="img-reponsive img-rounded"> Ver Gráficos</button></a>
+	</div>
         <div class="panel-footer">Importe: $'.$total.'  </div>
       </div>
     </div>
     <div class="col-sm-4"> 
       <div class="panel panel-default">
-        <div class="panel-heading">Total Pedidos</div>
-        <div class="panel-body"></div>
+        <div class="panel-heading"><img class="img-reponsive img-rounded" src="../../icons/actions/view-pim-tasks.png" />Total Pedidos</div>
+        <div class="panel-body" align="center">
+        <a href="../ventas/graf_ventas.php"><button type="button" class="btn btn-default"><span class="pull-center "><img src="../../icons/actions/view-statistics.png"  class="img-reponsive img-rounded"> Ver Gráficos</button></a>
+        </div>
         <div class="panel-footer">Importe: $'.$imp_ped.'</div>
       </div>
     </div>
     <div class="col-sm-4"> 
       <div class="panel panel-default">
-        <div class="panel-heading">Remera The Cure (Negra)</div>
+        <div class="panel-heading"><img class="img-reponsive img-rounded" src="../../icons/actions/preferences-activities.png" /> Cantidad Pedidos Stand-By</div>
         <div class="panel-body"></div>
-        <div class="panel-footer">Importe: $400</div>
+        <div class="panel-footer">Cantidad: '.$prod.'</div>
       </div>
     </div>
   </div>

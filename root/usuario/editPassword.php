@@ -15,7 +15,7 @@
 	}
 	
 	$id = $_GET['id'];
-      $sql = "SELECT * FROM usuarios WHERE user = '$varsession'";
+      $sql = "SELECT * FROM usuarios WHERE id = '$id'";
       mysqli_select_db('t_shirts');
       $resultado = mysqli_query($conn,$sql);
       $fila = mysqli_fetch_assoc($resultado);
