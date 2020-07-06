@@ -283,7 +283,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Código QR</h4>
+        <h4 class="modal-title">Scanea el código QR sólo si aún no lo realizaste para este pedido, si ya realizaste esta operación anteriormente, sólo deberás esperar a que el pedido figure como "Aprobado"</h4>
       </div>
       <div class="modal-body" >
       <div class="container">    
