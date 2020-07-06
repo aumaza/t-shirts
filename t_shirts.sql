@@ -66,7 +66,8 @@ CREATE TABLE `pedidos` (
   `direccion` varchar(60) NOT NULL,
   `localidad` varchar(60) NOT NULL,
   `provincia` varchar(90) NOT NULL,
-  `estado` enum('stand-by','Aprobado') DEFAULT 'stand-by',
+  `estado` varchar(9) NOT NULL DEFAULT 'stand-by',
+  `update_est` date NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -77,7 +78,7 @@ CREATE TABLE `pedidos` (
 
 LOCK TABLES `pedidos` WRITE;
 /*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
-INSERT INTO `pedidos` VALUES (1,'2020-06-30','REM-000001','XL','REMERA STONES NEGRA',400.00,1,'Augusto Maza','debianmaza@gmail.com','1161669201','Felix de Azara 1871 1C','Banfield','Buenos Aires','Aprobado'),(2,'2020-06-30','REM-000003','XL','REMERA THE CURE NEGRA',1200.00,3,'Augusto Maza','debianmaza@gmail.com','1161669201','Felix de Azara 1871 1C','Banfield','Buenos Aires','stand-by'),(3,'2020-06-30','REM-000002','XL','REMERA GUNS BLANCA',400.00,1,'Augusto Maza','debianmaza@gmail.com','1161669201','Felix de Azara 1871 1C','Banfield','Buenos Aires','stand-by'),(4,'2020-06-30','REM-000001','M','REMERA STONES NEGRA',800.00,2,'Augusto Maza','debianmaza@gmail.com','1161669201','Felix de Azara 1871 1C','Banfield','Buenos Aires','stand-by'),(5,'2020-07-04','REM-000003','XL','REMERA THE CURE NEGRA',400.00,1,'Augusto Maza','debianmaza@gmail.com','1161669201','Felix de Azara 1871 1C','Banfield','Buenos Aires','Aprobado'),(6,'2020-07-04','REM-000002','M','REMERA GUNS BLANCA',400.00,1,'Augusto Maza','debianmaza@gmail.com','1161669201','Felix de Azara 1871 1C','Banfield','Buenos Aires','stand-by');
+INSERT INTO `pedidos` VALUES (1,'2020-06-30','REM-000001','XL','REMERA STONES NEGRA',400.00,1,'Augusto Maza','debianmaza@gmail.com','1161669201','Felix de Azara 1871 1C','Banfield','Buenos Aires','Entregado','0000-00-00'),(2,'2020-06-30','REM-000003','XL','REMERA THE CURE NEGRA',1200.00,3,'Augusto Maza','debianmaza@gmail.com','1161669201','Felix de Azara 1871 1C','Banfield','Buenos Aires','Aprobado','2020-07-06'),(3,'2020-06-30','REM-000002','XL','REMERA GUNS BLANCA',400.00,1,'Augusto Maza','debianmaza@gmail.com','1161669201','Felix de Azara 1871 1C','Banfield','Buenos Aires','stand-by','0000-00-00'),(4,'2020-06-30','REM-000001','M','REMERA STONES NEGRA',800.00,2,'Augusto Maza','debianmaza@gmail.com','1161669201','Felix de Azara 1871 1C','Banfield','Buenos Aires','stand-by','0000-00-00'),(5,'2020-07-04','REM-000003','XL','REMERA THE CURE NEGRA',400.00,1,'Augusto Maza','debianmaza@gmail.com','1161669201','Felix de Azara 1871 1C','Banfield','Buenos Aires','Entregado','2020-07-06'),(6,'2020-07-04','REM-000002','M','REMERA GUNS BLANCA',400.00,1,'Augusto Maza','debianmaza@gmail.com','1161669201','Felix de Azara 1871 1C','Banfield','Buenos Aires','stand-by','0000-00-00');
 /*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,4 +146,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-07-06 15:47:53
+-- Dump completed on 2020-07-06 19:00:21
