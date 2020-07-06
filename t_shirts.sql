@@ -32,7 +32,7 @@ CREATE TABLE `clientes` (
   `provincia` varchar(90) NOT NULL,
   `avatar` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'Nicolas Maza','enimaza@gmail.com','1134857896','La Chilca 1883','Ciudad Evita','Buenos Aires',NULL),(2,'Augusto Maza','debianmaza@gmail.com','1161669201','Felix de Azara 1871 1C','Banfield','Buenos Aires',NULL);
+INSERT INTO `clientes` VALUES (1,'Nicolas Maza','enimaza@gmail.com','1134857896','La Chilca 1883','Ciudad Evita','Buenos Aires',NULL),(2,'Augusto Maza','debianmaza@gmail.com','1161669201','Felix de Azara 1871 1C','Banfield','Buenos Aires',NULL),(4,'Gustavo Flores','gflore@mecon.gob.ar','1178982345','La Pocha 1776','Capital Federal','Buenos Aires',NULL);
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -68,7 +68,7 @@ CREATE TABLE `pedidos` (
   `provincia` varchar(90) NOT NULL,
   `estado` enum('stand-by','Aprobado') DEFAULT 'stand-by',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -77,7 +77,7 @@ CREATE TABLE `pedidos` (
 
 LOCK TABLES `pedidos` WRITE;
 /*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
-INSERT INTO `pedidos` VALUES (1,'2020-06-30','REM-000001','XL','REMERA STONES NEGRA',400.00,1,'Augusto Maza','debianmaza@gmail.com','1161669201','Felix de Azara 1871 1C','Banfield','Buenos Aires','stand-by'),(2,'2020-06-30','REM-000003','XL','REMERA THE CURE NEGRA',1200.00,3,'Augusto Maza','debianmaza@gmail.com','1161669201','Felix de Azara 1871 1C','Banfield','Buenos Aires','stand-by'),(3,'2020-06-30','REM-000002','XL','REMERA GUNS BLANCA',400.00,1,'Augusto Maza','debianmaza@gmail.com','1161669201','Felix de Azara 1871 1C','Banfield','Buenos Aires','stand-by'),(4,'2020-06-30','REM-000001','M','REMERA STONES NEGRA',800.00,2,'Augusto Maza','debianmaza@gmail.com','1161669201','Felix de Azara 1871 1C','Banfield','Buenos Aires','stand-by');
+INSERT INTO `pedidos` VALUES (1,'2020-06-30','REM-000001','XL','REMERA STONES NEGRA',400.00,1,'Augusto Maza','debianmaza@gmail.com','1161669201','Felix de Azara 1871 1C','Banfield','Buenos Aires','Aprobado'),(2,'2020-06-30','REM-000003','XL','REMERA THE CURE NEGRA',1200.00,3,'Augusto Maza','debianmaza@gmail.com','1161669201','Felix de Azara 1871 1C','Banfield','Buenos Aires','stand-by'),(3,'2020-06-30','REM-000002','XL','REMERA GUNS BLANCA',400.00,1,'Augusto Maza','debianmaza@gmail.com','1161669201','Felix de Azara 1871 1C','Banfield','Buenos Aires','stand-by'),(4,'2020-06-30','REM-000001','M','REMERA STONES NEGRA',800.00,2,'Augusto Maza','debianmaza@gmail.com','1161669201','Felix de Azara 1871 1C','Banfield','Buenos Aires','stand-by'),(5,'2020-07-04','REM-000003','XL','REMERA THE CURE NEGRA',400.00,1,'Augusto Maza','debianmaza@gmail.com','1161669201','Felix de Azara 1871 1C','Banfield','Buenos Aires','Aprobado'),(6,'2020-07-04','REM-000002','M','REMERA GUNS BLANCA',400.00,1,'Augusto Maza','debianmaza@gmail.com','1161669201','Felix de Azara 1871 1C','Banfield','Buenos Aires','stand-by');
 /*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -123,7 +123,7 @@ CREATE TABLE `usuarios` (
   `password` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `role` int(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -132,7 +132,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'Administrador','root','tshirtsadm',1),(3,'Nicolas Maza','enimaza','enimaza123',1),(4,'Augusto Maza','aumaza','slack142',1);
+INSERT INTO `usuarios` VALUES (1,'Administrador','root','tshirtsadm',1),(3,'Nicolas Maza','enimaza','enimaza123',1),(4,'Augusto Maza','aumaza','slack142',1),(5,'Gustavo Flores','gflores','gflores123',1);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -145,4 +145,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-30 16:52:31
+-- Dump completed on 2020-07-06 15:47:53

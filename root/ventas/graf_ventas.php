@@ -13,7 +13,7 @@
 	echo '<a href="../../logout.php"><br><br><button type="submit" class="btn btn-primary">Aceptar</button></a>';	
 	die();
 	}
-	
+	// total importe sobre ventas realizadas
 	$sql = "select sum(importe) as total from pedidos where estado = 'Aprobado'";
 	mysqli_select_db('t_shirts');
 	$res = mysqli_query($conn,$sql);
@@ -21,20 +21,32 @@
 		  $total = $row['total'];
 	}
 	
+	//total importe sobre pedidos stand-by
 	$query = "select sum(importe) as total from pedidos where estado = 'stand-by'";
 	mysqli_select_db('t_shirts');
 	$resp = mysqli_query($conn,$query);
 	while($row = mysqli_fetch_array($resp)){
 		  $imp_ped = $row['total'];
 	    }
-	    
+	
+	//cantidad productos pedidos en estado stand-by
 	$sq = "select count(cod_prod) as productos from pedidos where estado = 'stand-by'";
 	mysqli_select_db('t_shirts');
 	$res = mysqli_query($conn,$sq);
 	while($row = mysqli_fetch_array($res)){
 		$count = $row['productos'];
 	}
+	
+	// los 10 productos mas pedidos
 
+	$ql = "select cod_prod, sum(cantidad) as totalcant from pedidos group by cod_prod order by sum(cantidad) DESC limit 1";
+	mysqli_select_db('t_shirts');
+	$resval = mysqli_query($conn,$ql);
+	while($row = mysqli_fetch_array($resval)){
+		$articulo = $row['cod_prod'];
+		$counter = $row['totalcant'];
+	}
+	
 
 ?>
 
@@ -146,7 +158,7 @@
 <div class="jumbotron">
   <div class="container text-center">
     <h1>T-SHIRTS</h1>      
-    <h2>Online Store</h2>
+    <h2>Online Store - Análisis Estadísticos</h2>
     <a href="../main/main.php"><button class="btn btn-default"><img src="../../icons/actions/arrow-left.png" /><strong> Volver</strong></button></a>
   </div>
 </div><br>
@@ -162,7 +174,7 @@
 <script>
 var ctx = document.getElementById('myChart');
 var myChart = new Chart(ctx, {
-    type: 'bar',
+    type: 'horizontalBar',
     data: {
         labels: ['Importe'],
         datasets: [{
@@ -210,6 +222,7 @@ var myChart = new Chart(ctx, {
         <canvas id="myChart2" width="600" height="600"></canvas>
 <script>
 var ctx = document.getElementById('myChart2');
+var colors = ['#007bff','#28a745','#444444','#c3e6cb','#dc3545','#6c757d','#FFA858','#C0C0FF'];
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -217,22 +230,8 @@ var myChart = new Chart(ctx, {
         datasets: [{
             label: 'Total Pedidos en Pesos',
             data: [<?php echo $imp_ped;?>],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
+            backgroundColor: colors[5],
+            borderColor: colors[1],
             borderWidth: 1
         }]
     },
@@ -259,6 +258,7 @@ var myChart = new Chart(ctx, {
         <canvas id="myChart3" width="600" height="600"></canvas>
 <script>
 var ctx = document.getElementById('myChart3');
+var colors = ['#007bff','#28a745','#444444','#c3e6cb','#dc3545','#6c757d','#FFA858','#C0C0FF'];
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -266,22 +266,8 @@ var myChart = new Chart(ctx, {
         datasets: [{
             label: 'Total Pedidos Stand-By',
             data: [<?php echo $count;?>],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
+            backgroundColor: colors[5],
+            borderColor: colors[6],
             borderWidth: 1
         }]
     },
@@ -307,9 +293,37 @@ var myChart = new Chart(ctx, {
   <div class="row">
     <div class="col-sm-4">
       <div class="panel panel-default">
-        <div class="panel-heading">Remera Guns and Roses (Blanca)</div>
-        <div class="panel-body"><img src="../../pics/pic10.png" class="img-responsive" style="width:100%" alt="Image"></div>
-        <div class="panel-footer">Importe: $400</div>
+        <div class="panel-heading">Artículo más pedido</div>
+        <div class="panel-body">
+        <canvas id="myChart4" width="600" height="600"></canvas>
+<script>
+var ctx = document.getElementById('myChart4');
+var colors = ['#007bff','#28a745','#444444','#c3e6cb','#dc3545','#6c757d','#FFA858','#C0C0FF'];
+var myChart = new Chart(ctx, {
+    type: 'horizontalBar',
+    data: {
+        labels: ['<?php echo $articulo;?>'],
+        datasets: [{
+            label: 'Artículo más Pedido',
+            data: [<?php echo $counter;?>],
+            backgroundColor: colors[5],
+            borderColor: colors[7],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+        </div>
+        <div class="panel-footer">Más Pedido: <?php echo $articulo;?> Cantidad: <?php echo $counter;?></div>
       </div>
     </div>
     <div class="col-sm-4"> 

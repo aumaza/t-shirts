@@ -821,6 +821,14 @@ function ventas_stats($conn){
     while($row = mysqli_fetch_array($retval)){
 	      $prod = $row['productos'];
     }
+	// articulo producto mas pedido
+	$ql = "select cod_prod, sum(cantidad) as totalcant from pedidos group by cod_prod order by sum(cantidad) DESC limit 1";
+	mysqli_select_db('t_shirts');
+	$resval = mysqli_query($conn,$ql);
+	while($row = mysqli_fetch_array($resval)){
+		$articulo = $row['cod_prod'];
+		$counter = $row['totalcant'];
+	}
 
 	
 echo '<div class="container">
@@ -829,6 +837,8 @@ echo '<div class="container">
       <div class="alert alert-success" role="alert">
 	       <img class="img-reponsive img-rounded" src="../../icons/actions/office-chart-bar.png" /> Análisis de Ventas
 	       </div><hr>
+	       <a href="../ventas/graf_ventas.php"><button type="button" class="btn btn-default"><span class="pull-center "><img src="../../icons/actions/view-statistics.png"  class="img-reponsive img-rounded"> Ver Gráficos</button></a>
+	       <hr>
 
    <div class="container">    
   <div class="row">
@@ -836,8 +846,7 @@ echo '<div class="container">
       <div class="panel panel-default">
         <div class="panel-heading"><img class="img-reponsive img-rounded" src="../../icons/actions/view-financial-transfer.png" /> Total Ventas Finalizadas</div>
         <div class="panel-body" align="center">
-        <a href="../ventas/graf_ventas.php"><button type="button" class="btn btn-default"><span class="pull-center "><img src="../../icons/actions/view-statistics.png"  class="img-reponsive img-rounded"> Ver Gráficos</button></a>
-	</div>
+       </div>
         <div class="panel-footer">Importe: $'.$total.'  </div>
       </div>
     </div>
@@ -845,8 +854,7 @@ echo '<div class="container">
       <div class="panel panel-default">
         <div class="panel-heading"><img class="img-reponsive img-rounded" src="../../icons/actions/view-pim-tasks.png" />Total Pedidos</div>
         <div class="panel-body" align="center">
-        <a href="../ventas/graf_ventas.php"><button type="button" class="btn btn-default"><span class="pull-center "><img src="../../icons/actions/view-statistics.png"  class="img-reponsive img-rounded"> Ver Gráficos</button></a>
-        </div>
+       </div>
         <div class="panel-footer">Importe: $'.$imp_ped.'</div>
       </div>
     </div>
@@ -864,9 +872,9 @@ echo '<div class="container">
   <div class="row">
     <div class="col-sm-4">
       <div class="panel panel-default">
-        <div class="panel-heading">Remera Guns and Roses (Blanca)</div>
+        <div class="panel-heading"><img class="img-reponsive img-rounded" src="../../icons/actions/rating.png" /> Articulo más Pedido</div>
         <div class="panel-body"></div>
-        <div class="panel-footer">Importe: $400</div>
+        <div class="panel-footer">Artículo: '.$articulo. ' Cantidad: ' .$counter.'</div>
       </div>
     </div>
     <div class="col-sm-4"> 
