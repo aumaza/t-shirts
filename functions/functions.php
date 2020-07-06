@@ -180,7 +180,7 @@ if($conn)
 	echo '<div class="panel panel-success" >
 	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/status/meeting-chair.png"  class="img-reponsive img-rounded"> Mis Datos</div><br>';
 
-            echo "<table class='display compact' id='myTable'>";
+            echo "<table class='display compact' style='width:100%' id='myTable'>";
               echo "<thead>
 		    <th class='text-nowrap text-center'>ID</th>
                     <th class='text-nowrap text-center'>Nombre y Apellido</th>
@@ -237,7 +237,7 @@ if($conn)
 	echo '<div class="panel panel-success" >
 	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/actions/user-group-properties.png"  class="img-reponsive img-rounded"> Mis Datos</div><br>';
 
-            echo "<table class='display compact' id='myTable'>";
+            echo "<table class='display compact' style='width:100%' id='myTable'>";
               echo "<thead>
 		    <th class='text-nowrap text-center'>ID</th>
                     <th class='text-nowrap text-center'>Nombre y Apellido</th>
@@ -304,7 +304,7 @@ if($conn)
 	echo '<div class="panel panel-success" >
 	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/actions/meeting-attending.png"  class="img-reponsive img-rounded"> Clientes</div><br>';
 
-            echo "<table class='display compact' id='myTable'>";
+            echo "<table class='display compact' style='width:100%' id='myTable'>";
               echo "<thead>
 		    <th class='text-nowrap text-center'>ID</th>
                     <th class='text-nowrap text-center'>Nombre y Apellido</th>
@@ -381,7 +381,7 @@ if($conn)
 			echo "</div>";
 			echo "</div>";
 	      
-            echo "<table class='display compact' id='myTable'>";
+            echo "<table class='display compact' style='width:100%' id='myTable'>";
               echo "<thead>
 		    <th class='text-nowrap text-center'>ID</th>
 		    <th class='text-nowrap text-center'>Fecha Compra</th>
@@ -461,7 +461,7 @@ if($conn)
 	echo '<div class="panel panel-success" >
 	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/status/wallet-open.png"  class="img-reponsive img-rounded"> Pedidos</div><br>';
 
-            echo "<table class='display compact' id='myTable'>";
+            echo "<table class='display compact' style='width:100%' id='myTable'>";
               echo "<thead>
 		    <th class='text-nowrap text-center'>ID</th>
 		    <th class='text-nowrap text-center'>Fecha Compra</th>
@@ -542,7 +542,7 @@ if($conn)
 	echo '<div class="panel panel-success" >
 	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/actions/view-income-categories.png"  class="img-reponsive img-rounded"> Ventas</div><br>';
 
-            echo "<table class='display compact' id='myTable'>";
+            echo "<table class='display compact' style='width:100%' id='myTable'>";
               echo "<thead>
 		    <th class='text-nowrap text-center'>ID</th>
 		    <th class='text-nowrap text-center'>Fecha Compra</th>
@@ -620,7 +620,7 @@ if($conn)
 	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/actions/flag-blue.png"  class="img-reponsive img-rounded"> Localidades';
 	echo '</div><br>';
 
-            echo "<table class='display compact' id='myTable'>";
+            echo "<table class='display compact' style='width:100%' id='myTable'>";
               echo "<thead>
 		    <th class='text-nowrap text-center'>ID</th>
 		    <th class='text-nowrap text-center'>Cod. Localidad</th>
@@ -679,7 +679,7 @@ if($conn)
 	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/actions/feed-subscribe.png"  class="img-reponsive img-rounded"> Productos';
 	echo '</div><br>';
 
-            echo "<table class='display compact' id='myTable'>";
+            echo "<table class='display compact' style='width:100%' id='myTable'>";
               echo "<thead>
 		    <th class='text-nowrap text-center'>ID</th>
 		    <th class='text-nowrap text-center'>Producto</th>
@@ -750,7 +750,7 @@ if($conn)
 	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/actions/feed-subscribe.png"  class="img-reponsive img-rounded"> Productos';
 	echo '</div><br>';
 
-            echo "<table class='display compact' id='myTable'>";
+            echo "<table class='display compact' style='width:100%' id='myTable'>";
               echo "<thead>
 		    <th class='text-nowrap text-center'>ID</th>
 		    <th class='text-nowrap text-center'>Producto</th>

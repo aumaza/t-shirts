@@ -45,10 +45,10 @@
  
   <!-- Data Table Script -->
 <script>
-
-      $(document).ready(function(){
+ $(document).ready(function(){
       $('#myTable').DataTable({
       "order": [[1, "asc"]],
+      "responsive": true,
       "language":{
         "lengthMenu": "Mostrar _MENU_ registros por pagina",
         "info": "Mostrando pagina _PAGE_ de _PAGES_",
