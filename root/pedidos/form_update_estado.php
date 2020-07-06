@@ -127,7 +127,7 @@
 		 $id = mysqli_real_escape_string($conn,$_POST["id"]); 
 		 $estado = mysqli_real_escape_string($conn,$_POST["estado"]);
 	 
-		$sql = "UPDATE pedidos set estado = '$estado' where id = '$id'";
+		$sql = "UPDATE pedidos set estado = '$estado', update_est = NOW() where id = '$id'";
 		mysqli_select_db('t_shirts');
 		$retval = mysqli_query($conn,$sql);
 		

@@ -140,9 +140,9 @@
 		
 		
 		$sql = "insert into pedidos ".
-		       "(f_pedido,cod_prod,talle,descripcion,importe,cantidad,cliente,email,celular,direccion,localidad,provincia)".
+		       "(f_pedido,cod_prod,talle,descripcion,importe,cantidad,cliente,email,celular,direccion,localidad,provincia,update_est)".
 		       "VALUES ".
-		       "(NOW(),'$cod_prod','$talle','$descripcion','$importe','$cantidad','$cl_nombre','$cl_email','$cl_celular','$cl_direccion','$cl_localidad','$cl_provincia')";
+		       "(NOW(),'$cod_prod','$talle','$descripcion','$importe','$cantidad','$cl_nombre','$cl_email','$cl_celular','$cl_direccion','$cl_localidad','$cl_provincia',NOW())";
 		
 		mysqli_select_db('t_shirts');
 		$retval = mysqli_query($conn,$sql);

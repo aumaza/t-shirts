@@ -166,6 +166,7 @@
 	<button type="submit" name="B" class="btn btn-default"><img class="img-reponsive img-rounded" src="../../icons/actions/meeting-attending.png" /> Clientes</button>
 	<button type="submit" name="C" class="btn btn-default"><img class="img-reponsive img-rounded" src="../../icons/actions/view-income-categories.png" /> Ventas</button>
 	<button type="submit" name="F" class="btn btn-default"><img class="img-reponsive img-rounded" src="../../icons/actions/office-chart-bar.png" /> Análisis de Ventas</button>
+	<button type="submit" name="G" class="btn btn-default"><img class="img-reponsive img-rounded" src="../../icons/actions/mail-mark-notjunk.png" /> Productos Entregados</button>
 	</div> 
        </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -227,6 +228,9 @@
 	    }
 	    if(isset($_POST['F'])){
 		  ventas_stats($conn);
+	    }
+	    if(isset($_POST['G'])){
+		  loadEntregas($conn);
 	    }
   
   

@@ -397,6 +397,7 @@ if($conn)
                     <th class='text-nowrap text-center'>Localidad</th>
 		    <th class='text-nowrap text-center'>Provincia</th>
                     <th class='text-nowrap text-center'>Estado</th>
+                    <th class='text-nowrap text-center'>Actualización Estado</th>
                     <th>&nbsp;</th>
                     </thead>";
 
@@ -418,6 +419,7 @@ if($conn)
 			 echo "<td align=center>".$fila['localidad']."</td>";
 			 echo "<td align=center>".$fila['provincia']."</td>";
 			 echo "<td align=center>".$fila['estado']."</td>";
+			 echo "<td align=center>".$fila['update_est']."</td>";
 			 echo "<td class='text-nowrap'>";
 			 echo ' <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-qrcode"></span> QR</button>';
 			 $count++;
@@ -477,6 +479,7 @@ if($conn)
                     <th class='text-nowrap text-center'>Localidad</th>
 		    <th class='text-nowrap text-center'>Provincia</th>
                     <th class='text-nowrap text-center'>Estado</th>
+                    <th class='text-nowrap text-center'>Actualización Estado</th>
                     <th>&nbsp;</th>
                     </thead>";
 
@@ -498,6 +501,7 @@ if($conn)
 			 echo "<td align=center>".$fila['localidad']."</td>";
 			 echo "<td align=center>".$fila['provincia']."</td>";
 			 echo "<td align=center>".$fila['estado']."</td>";
+			 echo "<td align=center>".$fila['update_est']."</td>";
 			 echo "<td class='text-nowrap'>";
 			 echo '<a href="../pedidos/cambiarEstado.php?id='.$fila['id'].'" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span> Cambiar Estado</a>';
 			 echo "</td>";
@@ -558,6 +562,7 @@ if($conn)
                     <th class='text-nowrap text-center'>Localidad</th>
 		    <th class='text-nowrap text-center'>Provincia</th>
                     <th class='text-nowrap text-center'>Estado</th>
+                    <th class='text-nowrap text-center'>Actulización Estado</th>
                     <th>&nbsp;</th>
                     </thead>";
 
@@ -579,8 +584,92 @@ if($conn)
 			 echo "<td align=center>".$fila['localidad']."</td>";
 			 echo "<td align=center>".$fila['provincia']."</td>";
 			 echo "<td align=center>".$fila['estado']."</td>";
+			 echo "<td align=center>".$fila['update_est']."</td>";
 			 echo "<td class='text-nowrap'>";
 			 echo '<a href="../ventas/comprobante.php?id='.$fila['id'].'" target="_blank" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-print"></span> Imprimir Comprobante</a>';
+			 echo '<a href="../pedidos/cambiarEstado.php?id='.$fila['id'].'" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span> Cambiar Estado</a>';
+			 echo "</td>";
+			 $count++;
+		}
+
+		echo "</table>";
+		echo "<br>";
+		echo '<button type="button" class="btn btn-primary">Cantidad de Ventas:  ' .$count; echo '</button>';
+		echo '</div>';
+		echo '</div>
+		      </div>
+		      </div>
+		      </div>';
+		}else{
+		  echo 'Connection Failure...';
+		}
+
+    mysqli_close($conn);
+
+
+}
+
+
+/*
+* Funcion para mostrar los pedidos de usuario.-
+*/
+
+function loadEntregas($conn){
+
+
+if($conn)
+{
+	$sql = "SELECT * FROM pedidos where estado = 'Entregado'";
+    	mysqli_select_db('t_shirts');
+    	$resultado = mysqli_query($conn,$sql);
+	//mostramos fila x fila
+	$count = 0;
+	echo '<div class="container-fluid">
+	      <div class="row">
+	      <div class="col-sm-12">';
+	echo '<div class="panel panel-success" >
+	      <div class="panel-heading"><span class="pull-center "><img src="../../icons/actions/mail-mark-notjunk.png"  class="img-reponsive img-rounded"> Productos Entregados</div><br>';
+
+            echo "<table class='display compact' style='width:100%' id='myTable'>";
+              echo "<thead>
+		    <th class='text-nowrap text-center'>ID</th>
+		    <th class='text-nowrap text-center'>Fecha Compra</th>
+		    <th class='text-nowrap text-center'>Cod. Producto</th>
+		    <th class='text-nowrap text-center'>Talle</th>
+                    <th class='text-nowrap text-center'>Descipción</th>
+                    <th class='text-nowrap text-center'>Importe</th>
+                    <th class='text-nowrap text-center'>Cantidad</th>
+                    <th class='text-nowrap text-center'>Cliente</th>
+                    <th class='text-nowrap text-center'>Email</th>
+                    <th class='text-nowrap text-center'>Celular</th>
+                    <th class='text-nowrap text-center'>Direccion</th>
+                    <th class='text-nowrap text-center'>Localidad</th>
+		    <th class='text-nowrap text-center'>Provincia</th>
+                    <th class='text-nowrap text-center'>Estado</th>
+                    <th class='text-nowrap text-center'>Actualización Estado</th>
+                    <th>&nbsp;</th>
+                    </thead>";
+
+
+	while($fila = mysqli_fetch_array($resultado)){
+			  // Listado normal
+			 echo "<tr>";
+			 echo "<td align=center>".$fila['id']."</td>";
+			 echo "<td align=center>".$fila['f_pedido']."</td>";
+			 echo "<td align=center>".$fila['cod_prod']."</td>";
+			 echo "<td align=center>".$fila['talle']."</td>";
+			 echo "<td align=center>".$fila['descripcion']."</td>";
+			 echo "<td align=center>".$fila['importe']."</td>";
+			 echo "<td align=center>".$fila['cantidad']."</td>";
+			 echo "<td align=center>".$fila['cliente']."</td>";
+			 echo "<td align=center>".$fila['email']."</td>";
+			 echo "<td align=center>".$fila['celular']."</td>";
+			 echo "<td align=center>".$fila['direccion']."</td>";
+			 echo "<td align=center>".$fila['localidad']."</td>";
+			 echo "<td align=center>".$fila['provincia']."</td>";
+			 echo "<td align=center>".$fila['estado']."</td>";
+			 echo "<td align=center>".$fila['update_est']."</td>";
+			 echo "<td class='text-nowrap'>";
 			 echo "</td>";
 			 $count++;
 		}

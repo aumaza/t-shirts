@@ -233,6 +233,7 @@
 	    <option value="stand-by" <?php if($line['estado'] == 'stand-by') echo 'selected'; ?>>Stand-By</option>
 	    <option value="Aprobado" <?php if($line['estado'] == 'Aprobado') echo 'selected'; ?>>Aprobado</option>
 	    <option value="Rechazado" <?php if($line['estado'] == 'Rechazado') echo 'selected'; ?> >Rechazado</option>
+	    <option value="Entregado" <?php if($line['estado'] == 'Entregado') echo 'selected'; ?> >Entregado</option>
 	    </select>
 	  </div>
 	  </div>
