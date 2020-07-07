@@ -594,6 +594,7 @@ if($conn)
 
 		echo "</table>";
 		echo "<br>";
+		echo '<a href="../ventas/solicitud.php" target="blank"><button type="button" class="btn btn-default"><span class="pull-center "><img src="../../icons/actions/view-documents-finances.png"  class="img-reponsive img-rounded"> Emitir Pedido</button></a><br><hr>';
 		echo '<button type="button" class="btn btn-primary">Cantidad de Ventas:  ' .$count; echo '</button>';
 		echo '</div>';
 		echo '</div>
