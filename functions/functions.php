@@ -919,7 +919,11 @@ function ventas_stats($conn){
 		$articulo = $row['cod_prod'];
 		$counter = $row['totalcant'];
 	}
-
+	
+	// 3 clientes con mas pedidos
+	$q = "select cliente, count(cliente) as times from pedidos where estado = 'stand-by' group by cliente order by count(cliente) DESC limit 0, 3";
+	mysqli_select_db('t_shirts');
+	$ret = mysqli_query($conn,$q);
 	
 echo '<div class="container">
       <div class="row">
@@ -969,9 +973,31 @@ echo '<div class="container">
     </div>
     <div class="col-sm-4"> 
       <div class="panel panel-default">
-        <div class="panel-heading">Remera Rocky Balboa (Blanca)</div>
-        <div class="panel-body"></div>
-        <div class="panel-footer">Importe: $400</div>
+        <div class="panel-heading">Clientes con más Pedidos</div>
+        <div class="panel-body">
+        
+        <table class="display compact" style="width:100%" id="myTable">
+		    <thead>
+		    <th class="text-nowrap text-center">Cliente</th>
+		    <th class="text-nowrap text-center">Cantidad Pedidos</th>
+		    <th>&nbsp;</th>
+                    </thead>';
+
+
+	while($fila = mysqli_fetch_array($ret)){
+			  // Listado normal
+			echo '<tr>
+			 <td align=center>'.$fila['cliente'].'</td>
+			 <td align=center>'.$fila['times'].'</td>
+			 <td class="text-nowrap">
+			 </td>';
+			 
+		}
+
+		echo '</table>
+        
+        </div>
+        <div class="panel-footer"></div>
       </div>
     </div>
     <div class="col-sm-4"> 
